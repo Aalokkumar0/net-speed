@@ -1,5 +1,8 @@
 package com.netspeed.monitor.ui.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -16,8 +19,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Height
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.PowerSettingsNew
-import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -48,10 +52,14 @@ import com.netspeed.monitor.ui.theme.TextSecondary
 fun UnitSelectorCard(
     currentUnit: SpeedUnit,
     onUnitSelected: (SpeedUnit) -> Unit,
+    showStatusBarSpeed: Boolean,
+    onShowStatusBarSpeedChanged: (Boolean) -> Unit,
+    dualLineIcon: Boolean,
+    onDualLineIconChanged: (Boolean) -> Unit,
+    notificationVisible: Boolean,
+    onNotificationVisibleChanged: (Boolean) -> Unit,
     startOnBoot: Boolean,
     onStartOnBootChanged: (Boolean) -> Unit,
-    dualLineIcon: Boolean = true,
-    onDualLineIconChanged: (Boolean) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -67,7 +75,7 @@ fun UnitSelectorCard(
                 .padding(20.dp)
         ) {
             Text(
-                text = "FORMAT & ICON SETTINGS",
+                text = "FORMAT & NOTIFICATION SETTINGS",
                 style = MaterialTheme.typography.labelSmall.copy(
                     letterSpacing = 1.5.sp,
                     fontWeight = FontWeight.Bold
@@ -110,7 +118,7 @@ fun UnitSelectorCard(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Dual-Line Status Bar Icon Toggle
+            // Master Status Bar Speed Number Toggle
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -132,7 +140,7 @@ fun UnitSelectorCard(
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Height,
+                            imageVector = Icons.Default.NotificationsActive,
                             contentDescription = null,
                             tint = CyanAccent,
                             modifier = Modifier.size(18.dp)
@@ -143,12 +151,16 @@ fun UnitSelectorCard(
 
                     Column {
                         Text(
-                            text = "Stacked Dual-Line Icon",
+                            text = "Show speed in status bar",
                             style = MaterialTheme.typography.titleMedium,
                             color = TextPrimary
                         )
                         Text(
-                            text = if (dualLineIcon) "Shows ↓ download & ↑ upload stacked" else "Shows single active speed number",
+                            text = if (showStatusBarSpeed) {
+                                "Live speed digits displayed in top status bar"
+                            } else {
+                                "Standard icon; speeds in notification shade only"
+                            },
                             style = MaterialTheme.typography.bodyMedium.copy(fontSize = 12.sp),
                             color = TextMuted
                         )
@@ -156,8 +168,8 @@ fun UnitSelectorCard(
                 }
 
                 Switch(
-                    checked = dualLineIcon,
-                    onCheckedChange = onDualLineIconChanged,
+                    checked = showStatusBarSpeed,
+                    onCheckedChange = onShowStatusBarSpeedChanged,
                     colors = SwitchDefaults.colors(
                         checkedThumbColor = DarkBg,
                         checkedTrackColor = CyanAccent,
@@ -167,7 +179,137 @@ fun UnitSelectorCard(
                 )
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            // Dual-Line Sub-Toggle (visible when status bar speed is enabled)
+            AnimatedVisibility(
+                visible = showStatusBarSpeed,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                Column {
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(DarkSurfaceVariant)
+                            .padding(14.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(36.dp)
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .background(Color(0x22FFFFFF)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Height,
+                                    contentDescription = null,
+                                    tint = CyanAccent,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Column {
+                                Text(
+                                    text = "Stacked Dual-Line Icon",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = TextPrimary
+                                )
+                                Text(
+                                    text = if (dualLineIcon) "Shows ↓ download & ↑ upload stacked" else "Shows single active speed number",
+                                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 12.sp),
+                                    color = TextMuted
+                                )
+                            }
+                        }
+
+                        Switch(
+                            checked = dualLineIcon,
+                            onCheckedChange = onDualLineIconChanged,
+                            colors = SwitchDefaults.colors(
+                                checkedThumbColor = DarkBg,
+                                checkedTrackColor = CyanAccent,
+                                uncheckedThumbColor = TextMuted,
+                                uncheckedTrackColor = SwitchTrackInactive
+                            )
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            // Show Notification Shade Card Toggle
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(DarkSurfaceVariant)
+                    .padding(14.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(36.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color(0x22FFFFFF)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Notifications,
+                            contentDescription = null,
+                            tint = CyanAccent,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    Column {
+                        Text(
+                            text = "Show notification card",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = TextPrimary
+                        )
+                        Text(
+                            text = if (notificationVisible) {
+                                "Full notification card with session data visible in drawer"
+                            } else {
+                                "Card hidden in drawer; keeps only the status bar icon"
+                            },
+                            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 12.sp),
+                            color = TextMuted
+                        )
+                    }
+                }
+
+                Switch(
+                    checked = notificationVisible,
+                    onCheckedChange = onNotificationVisibleChanged,
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = DarkBg,
+                        checkedTrackColor = CyanAccent,
+                        uncheckedThumbColor = TextMuted,
+                        uncheckedTrackColor = SwitchTrackInactive
+                    )
+                )
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
 
             // Start on Boot Switch Tile
             Row(

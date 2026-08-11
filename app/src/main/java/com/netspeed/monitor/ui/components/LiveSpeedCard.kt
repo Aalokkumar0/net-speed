@@ -253,8 +253,8 @@ private fun SpeedMeterTile(
             Text(
                 text = speedText,
                 style = MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 24.sp
                 ),
                 color = accentColor
             )
@@ -262,7 +262,8 @@ private fun SpeedMeterTile(
             Text(
                 text = "($altSpeedText)",
                 style = MaterialTheme.typography.labelSmall.copy(
-                    fontSize = 11.sp
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium
                 ),
                 color = TextMuted
             )

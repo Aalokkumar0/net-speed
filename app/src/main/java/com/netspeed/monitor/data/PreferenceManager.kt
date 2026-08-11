@@ -23,8 +23,14 @@ class PreferenceManager(context: Context) {
     private val _startOnBoot = MutableStateFlow(getStartOnBoot())
     val startOnBoot: StateFlow<Boolean> = _startOnBoot.asStateFlow()
 
+    private val _showStatusBarSpeed = MutableStateFlow(getShowStatusBarSpeed())
+    val showStatusBarSpeed: StateFlow<Boolean> = _showStatusBarSpeed.asStateFlow()
+
     private val _dualLineIconEnabled = MutableStateFlow(getDualLineIconEnabled())
     val dualLineIconEnabled: StateFlow<Boolean> = _dualLineIconEnabled.asStateFlow()
+
+    private val _notificationVisible = MutableStateFlow(isNotificationVisible())
+    val notificationVisible: StateFlow<Boolean> = _notificationVisible.asStateFlow()
 
     private val _smoothingWindowSize = MutableStateFlow(getSmoothingWindowSize())
     val smoothingWindowSize: StateFlow<Int> = _smoothingWindowSize.asStateFlow()
@@ -57,6 +63,15 @@ class PreferenceManager(context: Context) {
         return prefs.getBoolean(KEY_START_ON_BOOT, true)
     }
 
+    fun setShowStatusBarSpeed(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_SHOW_STATUS_BAR_SPEED, enabled).apply()
+        _showStatusBarSpeed.value = enabled
+    }
+
+    fun getShowStatusBarSpeed(): Boolean {
+        return prefs.getBoolean(KEY_SHOW_STATUS_BAR_SPEED, true)
+    }
+
     fun setDualLineIconEnabled(enabled: Boolean) {
         prefs.edit().putBoolean(KEY_DUAL_LINE_ICON, enabled).apply()
         _dualLineIconEnabled.value = enabled
@@ -64,6 +79,15 @@ class PreferenceManager(context: Context) {
 
     fun getDualLineIconEnabled(): Boolean {
         return prefs.getBoolean(KEY_DUAL_LINE_ICON, true)
+    }
+
+    fun setNotificationVisible(visible: Boolean) {
+        prefs.edit().putBoolean(KEY_NOTIFICATION_VISIBLE, visible).apply()
+        _notificationVisible.value = visible
+    }
+
+    fun isNotificationVisible(): Boolean {
+        return prefs.getBoolean(KEY_NOTIFICATION_VISIBLE, true)
     }
 
     fun setSmoothingWindowSize(size: Int) {
@@ -81,7 +105,9 @@ class PreferenceManager(context: Context) {
         private const val KEY_MONITORING_ENABLED = "key_monitoring_enabled"
         private const val KEY_SPEED_UNIT = "key_speed_unit"
         private const val KEY_START_ON_BOOT = "key_start_on_boot"
+        private const val KEY_SHOW_STATUS_BAR_SPEED = "key_show_status_bar_speed"
         private const val KEY_DUAL_LINE_ICON = "key_dual_line_icon"
+        private const val KEY_NOTIFICATION_VISIBLE = "key_notification_visible"
         private const val KEY_SMOOTHING_WINDOW_SIZE = "key_smoothing_window_size"
 
         @Volatile

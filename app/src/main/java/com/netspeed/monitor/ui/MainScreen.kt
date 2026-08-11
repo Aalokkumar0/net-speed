@@ -50,13 +50,17 @@ fun MainScreen(
     currentSpeed: NetworkSpeed,
     speedUnit: SpeedUnit,
     startOnBoot: Boolean,
+    showStatusBarSpeed: Boolean,
     dualLineIcon: Boolean,
+    notificationVisible: Boolean,
     hasNotificationPermission: Boolean,
     isIgnoringBatteryOptimizations: Boolean,
     onToggleService: (Boolean) -> Unit,
     onUnitSelected: (SpeedUnit) -> Unit,
-    onStartOnBootChanged: (Boolean) -> Unit,
+    onShowStatusBarSpeedChanged: (Boolean) -> Unit,
     onDualLineIconChanged: (Boolean) -> Unit,
+    onNotificationVisibleChanged: (Boolean) -> Unit,
+    onStartOnBootChanged: (Boolean) -> Unit,
     onRequestNotificationPermission: () -> Unit,
     onRequestDisableBatteryOptimization: () -> Unit
 ) {
@@ -141,14 +145,18 @@ fun MainScreen(
                 )
             }
 
-            // Unit, Dual-Line Icon, and Boot Preferences
+            // Unit, Status Bar Speed, Dual-Line Icon, Drawer Notification & Boot Preferences
             UnitSelectorCard(
                 currentUnit = speedUnit,
                 onUnitSelected = onUnitSelected,
-                startOnBoot = startOnBoot,
-                onStartOnBootChanged = onStartOnBootChanged,
+                showStatusBarSpeed = showStatusBarSpeed,
+                onShowStatusBarSpeedChanged = onShowStatusBarSpeedChanged,
                 dualLineIcon = dualLineIcon,
-                onDualLineIconChanged = onDualLineIconChanged
+                onDualLineIconChanged = onDualLineIconChanged,
+                notificationVisible = notificationVisible,
+                onNotificationVisibleChanged = onNotificationVisibleChanged,
+                startOnBoot = startOnBoot,
+                onStartOnBootChanged = onStartOnBootChanged
             )
 
             // Battery Optimization Guide

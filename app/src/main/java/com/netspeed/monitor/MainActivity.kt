@@ -59,7 +59,9 @@ class MainActivity : ComponentActivity() {
 
                 val speedUnit by preferenceManager.speedUnit.collectAsState()
                 val startOnBoot by preferenceManager.startOnBoot.collectAsState()
+                val showStatusBarSpeed by preferenceManager.showStatusBarSpeed.collectAsState()
                 val dualLineIcon by preferenceManager.dualLineIconEnabled.collectAsState()
+                val notificationVisible by preferenceManager.notificationVisible.collectAsState()
 
                 var hasNotificationPermission by remember {
                     mutableStateOf(checkNotificationPermission())
@@ -87,7 +89,9 @@ class MainActivity : ComponentActivity() {
                     currentSpeed = currentSpeed,
                     speedUnit = speedUnit,
                     startOnBoot = startOnBoot,
+                    showStatusBarSpeed = showStatusBarSpeed,
                     dualLineIcon = dualLineIcon,
+                    notificationVisible = notificationVisible,
                     hasNotificationPermission = hasNotificationPermission,
                     isIgnoringBatteryOptimizations = isIgnoringBatteryOptimizations,
                     onToggleService = { enable ->
@@ -109,14 +113,23 @@ class MainActivity : ComponentActivity() {
                             SpeedMonitorService.start(this)
                         }
                     },
-                    onStartOnBootChanged = { enable ->
-                        preferenceManager.setStartOnBoot(enable)
+                    onShowStatusBarSpeedChanged = { enable ->
+                        preferenceManager.setShowStatusBarSpeed(enable)
+                        if (isServiceRunning) {
+                            SpeedMonitorService.start(this)
+                        }
                     },
                     onDualLineIconChanged = { enable ->
                         preferenceManager.setDualLineIconEnabled(enable)
                         if (isServiceRunning) {
                             SpeedMonitorService.start(this)
                         }
+                    },
+                    onNotificationVisibleChanged = { visible ->
+                        preferenceManager.setNotificationVisible(visible)
+                    },
+                    onStartOnBootChanged = { enable ->
+                        preferenceManager.setStartOnBoot(enable)
                     },
                     onRequestNotificationPermission = {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

@@ -22,16 +22,24 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 /**
  * Continuous Foreground Service that periodically samples network throughput via [TrafficStats],
- * applies moving average smoothing to eliminate flicker, updates the status bar icon, and publishes
- * metrics to the UI.
+ * applies moving average smoothing to eliminate flicker, updates the status bar icon and notification,
+ * and publishes real-time metrics to the UI.
  *
- * Runs under android:foregroundServiceType="dataSync" to maintain reliable continuous execution
- * on Android 14+ (API 34) and Android 15 (API 35).
+ * =========================================================================================
+ * ANDROID FOREGROUND SERVICE NOTIFICATION REQUIREMENT:
+ * Android OS strictly mandates that a Foreground Service MUST have an active Notification bound
+ * to it via [startForeground]. An app cannot cancel or destroy this notification while the service
+ * is running.
+ *
+ * When the user toggles "Show notification in drawer" OFF, we switch to a minimal silent notification
+ * (PRIORITY_MIN) with no body text, while keeping the status bar icon updating every second.
+ * =========================================================================================
  */
 class SpeedMonitorService : Service() {
 
@@ -44,6 +52,7 @@ class SpeedMonitorService : Service() {
     private lateinit var preferenceManager: PreferenceManager
 
     private var pollingJob: Job? = null
+    private var notificationObserverJob: Job? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -52,6 +61,27 @@ class SpeedMonitorService : Service() {
         preferenceManager = PreferenceManager.getInstance(this)
 
         _isServiceRunning.value = true
+
+        observePreferences()
+    }
+
+    private fun observePreferences() {
+        notificationObserverJob = serviceScope.launch {
+            preferenceManager.notificationVisible.collectLatest { visible ->
+                if (_isServiceRunning.value) {
+                    val unit = preferenceManager.getSpeedUnit()
+                    val showSpeed = preferenceManager.getShowStatusBarSpeed()
+                    val dualLine = preferenceManager.getDualLineIconEnabled()
+                    notificationHelper.update(
+                        speed = _currentSpeed.value,
+                        unit = unit,
+                        showSpeedIcon = showSpeed,
+                        dualLineIcon = dualLine,
+                        notificationVisible = visible
+                    )
+                }
+            }
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -71,11 +101,16 @@ class SpeedMonitorService : Service() {
 
     private fun startForegroundNotification() {
         val unit = preferenceManager.getSpeedUnit()
+        val showSpeed = preferenceManager.getShowStatusBarSpeed()
         val dualLine = preferenceManager.getDualLineIconEnabled()
+        val notificationVisible = preferenceManager.isNotificationVisible()
+
         val initialNotification = notificationHelper.buildNotification(
             speed = NetworkSpeed.ZERO,
             unit = unit,
-            dualLineIcon = dualLine
+            showSpeedIcon = showSpeed,
+            dualLineIcon = dualLine,
+            notificationVisible = notificationVisible
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -103,8 +138,7 @@ class SpeedMonitorService : Service() {
                 val loopStartMs = SystemClock.elapsedRealtime()
                 val intervalSinceLastLoopStartMs = if (lastLoopStartTime > 0L) loopStartMs - lastLoopStartTime else 0L
 
-                // Detect large gaps (e.g. device was asleep / Doze for > 5s) and reset baselines
-                // so we don't show a huge artificial spike after resuming
+                // Detect large gaps (e.g. device was asleep in Doze for > 5s) and reset baselines
                 if (lastLoopStartTime > 0L && intervalSinceLastLoopStartMs > MAX_LOOP_GAP_MS) {
                     Log.w(TAG, "[DOZE_GAP_DETECTED] Loop gap was ${intervalSinceLastLoopStartMs}ms. Resetting tracker baseline.")
                     trafficTracker.reset()
@@ -123,11 +157,16 @@ class SpeedMonitorService : Service() {
 
                 val t1 = SystemClock.elapsedRealtime()
                 val speedUnit = preferenceManager.getSpeedUnit()
+                val showSpeed = preferenceManager.getShowStatusBarSpeed()
                 val isDualLine = preferenceManager.getDualLineIconEnabled()
+                val isNotificationVisible = preferenceManager.isNotificationVisible()
+
                 notificationHelper.update(
                     speed = speed,
                     unit = speedUnit,
-                    dualLineIcon = isDualLine
+                    showSpeedIcon = showSpeed,
+                    dualLineIcon = isDualLine,
+                    notificationVisible = isNotificationVisible
                 )
                 val notifyDurationMs = SystemClock.elapsedRealtime() - t1
 
@@ -151,6 +190,8 @@ class SpeedMonitorService : Service() {
     private fun stopMonitoring() {
         pollingJob?.cancel()
         pollingJob = null
+        notificationObserverJob?.cancel()
+        notificationObserverJob = null
         _isServiceRunning.value = false
         preferenceManager.setMonitoringEnabled(false)
     }

@@ -23,28 +23,24 @@ import com.netspeed.monitor.service.SpeedMonitorService
 import com.netspeed.monitor.utils.SpeedFormatter
 
 /**
- * Handles creation and dynamic updates of the persistent status bar notification,
- * featuring real-time download and upload speed indicators dynamically rendered onto
- * a reusable Canvas bitmap.
+ * Handles creation and dynamic updates of the persistent notification and status bar icon.
  *
  * =========================================================================================
- * OEM STATUS BAR RENDERING CAVEATS & ARCHITECTURE:
- * 1. Stock Android & Google Pixel:
- *    Android since Lollipop (API 21+) treats notification small icons as strict alpha-masks.
- *    Any RGB color is discarded by the system status bar compositor; only alpha transparency
- *    is sampled and tinted (white in dark mode, dark gray in light mode).
- *    Setting [Paint.isAntiAlias = false] is critical: soft anti-aliased edges create translucent
- *    pixels that smear into blurry artifacts at ~24dp display scale. Binary opaque/transparent
- *    pixels ensure maximum legibility.
+ * ANDROID FOREGROUND SERVICE NOTIFICATION REQUIREMENT:
+ * Android OS (Android 8.0+ / API 26 through Android 15 / API 35) strictly mandates that any
+ * Foreground Service (especially android:foregroundServiceType="dataSync") MUST be bound to
+ * an active [Notification] via Service.startForeground().
  *
- * 2. Samsung One UI (One UI 3.x - 8.x):
- *    One UI provides generous status bar icon bounds (~24-28dp) and handles monochrome bitmaps
- *    cleanly. Stacked dual-line monospace text ("↓1.2M" / "↑45K") renders with distinct vertical
- *    separation between download and upload rates.
+ * An app CANNOT simply remove or cancel the notification while the service is alive, or the OS
+ * will immediately throw a ForegroundServiceDidNotStartInTimeException or kill the process.
  *
- * 3. Xiaomi (MIUI / HyperOS), OnePlus (OxygenOS), OPPO (ColorOS):
- *    These OEMs aggressively compress status bar icons. Using monospace bold typefaces and
- *    dynamic horizontal auto-scaling prevents character clipping across notches/punch-holes.
+ * When the user turns OFF the "Show notification in drawer" toggle, we do NOT stop or destroy
+ * the notification. Instead, we transition to [buildMinimalNotification]:
+ * - Uses IMPORTANCE_MIN channel (completely silent, minimized/collapsed at the bottom of the shade)
+ * - PRIORITY_MIN
+ * - Removes all body text, session usage metrics, and action buttons
+ * - CRITICAL: Still sets the dynamic [setSmallIcon] bitmap so the live speed indicator in the
+ *   top status bar continues updating seamlessly every second without interruption.
  * =========================================================================================
  */
 class NotificationHelper(private val context: Context) {
@@ -59,25 +55,25 @@ class NotificationHelper(private val context: Context) {
     private val botBounds: Rect = Rect()
 
     private val iconPaint: Paint = Paint().apply {
-        // Anti-aliasing OFF: guarantees 100% opaque or 100% transparent pixels
-        // Eliminates gray-fringing blur at status bar icon scale (~24dp)
         isAntiAlias = false
         color = Color.WHITE
-        typeface = Typeface.create(Typeface.MONOSPACE, Typeface.BOLD)
+        typeface = Typeface.create("sans-serif-condensed", Typeface.BOLD)
+        isFakeBoldText = true
         textAlign = Paint.Align.CENTER
     }
 
     init {
-        createNotificationChannel()
+        createNotificationChannels()
     }
 
     /**
-     * Creates a silent, low-importance NotificationChannel to ensure unobtrusive background presence.
+     * Creates notification channels for both full (low importance) and minimal (min importance) modes.
      */
-    private fun createNotificationChannel() {
+    private fun createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
+            // Full notification channel: Low importance (silent, no vibration, visible in shade)
+            val fullChannel = NotificationChannel(
+                CHANNEL_ID_FULL,
                 context.getString(R.string.notification_channel_name),
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
@@ -87,7 +83,21 @@ class NotificationHelper(private val context: Context) {
                 setShowBadge(false)
                 setSound(null, null)
             }
-            notificationManager.createNotificationChannel(channel)
+            notificationManager.createNotificationChannel(fullChannel)
+
+            // Minimal notification channel: Min importance (silent, collapsed/minimized in shade)
+            val minChannel = NotificationChannel(
+                CHANNEL_ID_MINIMAL,
+                context.getString(R.string.notification_channel_name) + " (Silent / Minimized)",
+                NotificationManager.IMPORTANCE_MIN
+            ).apply {
+                description = "Minimized background channel for status-bar-only mode."
+                enableLights(false)
+                enableVibration(false)
+                setShowBadge(false)
+                setSound(null, null)
+            }
+            notificationManager.createNotificationChannel(minChannel)
         }
     }
 
@@ -95,11 +105,6 @@ class NotificationHelper(private val context: Context) {
      * Generates a status bar icon bitmap.
      * When [dualLine] is true, renders stacked two-line throughput ("↓ 1.2M" on top, "↑ 45K" on bottom).
      * When [dualLine] is false, renders a large single-line active throughput number.
-     *
-     * @param downBps Raw download throughput in bytes per second.
-     * @param upBps Raw upload throughput in bytes per second.
-     * @param unit Selected unit format (Bytes/s vs Bits/s).
-     * @param dualLine True for stacked download/upload rows, false for single active rate.
      */
     @Synchronized
     fun generateSpeedIcon(
@@ -108,44 +113,39 @@ class NotificationHelper(private val context: Context) {
         unit: SpeedUnit = SpeedUnit.BYTES_PER_SEC,
         dualLine: Boolean = true
     ): IconCompat {
-        // Clear canvas frame to full transparency
         iconBitmap.eraseColor(Color.TRANSPARENT)
 
         if (dualLine) {
             val downStr = "↓" + SpeedFormatter.formatCompactSpeed(downBps, unit)
             val upStr = "↑" + SpeedFormatter.formatCompactSpeed(upBps, unit)
 
-            // Dynamic font scaling based on the longest string length
             val maxLen = maxOf(downStr.length, upStr.length)
             val textSize = when {
-                maxLen <= 2 -> 40f  // e.g. "↓0", "↑0"
-                maxLen == 3 -> 36f  // e.g. "↓5K", "↑1M"
-                maxLen == 4 -> 32f  // e.g. "↓45K", "↑10M"
-                else -> 28f         // e.g. "↓1.2M", "↓850K", "↓999M"
+                maxLen <= 2 -> 48f
+                maxLen == 3 -> 44f
+                maxLen == 4 -> 40f
+                else -> 36f
             }
             iconPaint.textSize = textSize
 
-            // Calculate precise vertical centering for top row (Download)
             iconPaint.getTextBounds(downStr, 0, downStr.length, topBounds)
             val topX = ICON_SIZE / 2f
             val topY = (ICON_SIZE * 0.28f) - topBounds.exactCenterY()
             iconCanvas.drawText(downStr, topX, topY, iconPaint)
 
-            // Calculate precise vertical centering for bottom row (Upload)
             iconPaint.getTextBounds(upStr, 0, upStr.length, botBounds)
             val botX = ICON_SIZE / 2f
             val botY = (ICON_SIZE * 0.74f) - botBounds.exactCenterY()
             iconCanvas.drawText(upStr, botX, botY, iconPaint)
         } else {
-            // Single-line fallback: large single number for maximum distance legibility
             val activeBps = maxOf(downBps, upBps)
             val singleStr = SpeedFormatter.formatNumberOnlySpeed(activeBps, unit)
 
             val textSize = when (singleStr.length) {
-                1 -> 72f    // "0" — single digit maximum size
-                2 -> 58f    // "25" — two digits
-                3 -> 46f    // "850", "1.2" — three chars
-                else -> 38f // fallback
+                1 -> 86f
+                2 -> 76f
+                3 -> 62f
+                else -> 50f
             }
             iconPaint.textSize = textSize
 
@@ -159,24 +159,39 @@ class NotificationHelper(private val context: Context) {
     }
 
     /**
-     * Builds the persistent notification for the Foreground Service.
+     * Resolves the small icon to display (either dynamic speed bitmap or static icon).
      */
-    fun buildNotification(
+    private fun resolveSmallIcon(
         speed: NetworkSpeed,
         unit: SpeedUnit,
+        showSpeedIcon: Boolean,
+        dualLineIcon: Boolean
+    ): IconCompat {
+        return if (showSpeedIcon) {
+            generateSpeedIcon(
+                downBps = speed.rxBytesPerSec,
+                upBps = speed.txBytesPerSec,
+                unit = unit,
+                dualLine = dualLineIcon
+            )
+        } else {
+            IconCompat.createWithResource(context, R.drawable.ic_speed_notification)
+        }
+    }
+
+    /**
+     * Builds the full detailed notification card (shows live throughput, session data, and Stop button).
+     */
+    fun buildFullNotification(
+        speed: NetworkSpeed,
+        unit: SpeedUnit,
+        showSpeedIcon: Boolean = true,
         dualLineIcon: Boolean = true
     ): Notification {
-        val speedIcon = generateSpeedIcon(
-            downBps = speed.rxBytesPerSec,
-            upBps = speed.txBytesPerSec,
-            unit = unit,
-            dualLine = dualLineIcon
-        )
-
+        val speedIcon = resolveSmallIcon(speed, unit, showSpeedIcon, dualLineIcon)
         val combinedSpeedTitle = SpeedFormatter.formatCombined(speed.rxBytesPerSec, speed.txBytesPerSec, unit)
         val sessionDataText = SpeedFormatter.formatDetailedDataUsage(speed.totalRxBytes, speed.totalTxBytes)
 
-        // PendingIntent to launch MainActivity on notification click
         val contentIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
@@ -187,7 +202,6 @@ class NotificationHelper(private val context: Context) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Action intent to stop monitoring directly from notification shade
         val stopIntent = Intent(context, SpeedMonitorService::class.java).apply {
             action = SpeedMonitorService.ACTION_STOP_SERVICE
         }
@@ -198,7 +212,7 @@ class NotificationHelper(private val context: Context) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        return NotificationCompat.Builder(context, CHANNEL_ID)
+        return NotificationCompat.Builder(context, CHANNEL_ID_FULL)
             .setSmallIcon(speedIcon)
             .setContentTitle(combinedSpeedTitle)
             .setContentText(sessionDataText)
@@ -219,16 +233,83 @@ class NotificationHelper(private val context: Context) {
     }
 
     /**
-     * Updates the persistent notification with the latest throughput measurements.
+     * Builds a minimal, silent notification for status-bar-only mode.
+     * Keeps the status bar icon active while collapsing/minimizing the drawer card.
      */
-    fun update(speed: NetworkSpeed, unit: SpeedUnit, dualLineIcon: Boolean = true) {
-        val notification = buildNotification(speed, unit, dualLineIcon)
+    fun buildMinimalNotification(
+        speed: NetworkSpeed,
+        unit: SpeedUnit,
+        showSpeedIcon: Boolean = true,
+        dualLineIcon: Boolean = true
+    ): Notification {
+        val speedIcon = resolveSmallIcon(speed, unit, showSpeedIcon, dualLineIcon)
+
+        val contentIntent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        val contentPendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            contentIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        return NotificationCompat.Builder(context, CHANNEL_ID_MINIMAL)
+            .setSmallIcon(speedIcon)
+            .setContentTitle(context.getString(R.string.app_name))
+            .setContentText(null)
+            .setPriority(NotificationCompat.PRIORITY_MIN)
+            .setCategory(NotificationCompat.CATEGORY_SERVICE)
+            .setSilent(true)
+            .setOngoing(true)
+            .setOnlyAlertOnce(true)
+            .setShowWhen(false)
+            .setContentIntent(contentPendingIntent)
+            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
+            .build()
+    }
+
+    /**
+     * Builds the appropriate notification based on user's [notificationVisible] preference.
+     */
+    fun buildNotification(
+        speed: NetworkSpeed,
+        unit: SpeedUnit,
+        showSpeedIcon: Boolean = true,
+        dualLineIcon: Boolean = true,
+        notificationVisible: Boolean = true
+    ): Notification {
+        return if (notificationVisible) {
+            buildFullNotification(speed, unit, showSpeedIcon, dualLineIcon)
+        } else {
+            buildMinimalNotification(speed, unit, showSpeedIcon, dualLineIcon)
+        }
+    }
+
+    /**
+     * Updates the active persistent notification.
+     */
+    fun update(
+        speed: NetworkSpeed,
+        unit: SpeedUnit,
+        showSpeedIcon: Boolean = true,
+        dualLineIcon: Boolean = true,
+        notificationVisible: Boolean = true
+    ) {
+        val notification = buildNotification(
+            speed = speed,
+            unit = unit,
+            showSpeedIcon = showSpeedIcon,
+            dualLineIcon = dualLineIcon,
+            notificationVisible = notificationVisible
+        )
         notificationManager.notify(NOTIFICATION_ID, notification)
     }
 
     companion object {
-        const val CHANNEL_ID = "channel_network_speed_monitor"
+        const val CHANNEL_ID_FULL = "channel_network_speed_monitor"
+        const val CHANNEL_ID_MINIMAL = "channel_network_speed_monitor_min"
         const val NOTIFICATION_ID = 1001
-        private const val ICON_SIZE = 96 // 96x96 px (xxhdpi standard status bar canvas)
+        private const val ICON_SIZE = 96
     }
 }
