@@ -24,25 +24,46 @@ import com.netspeed.monitor.utils.SpeedFormatter
 
 /**
  * Handles creation and dynamic updates of the persistent status bar notification,
- * featuring a dynamically rendered live speed number icon in the status bar (like battery %).
+ * featuring real-time download and upload speed indicators dynamically rendered onto
+ * a reusable Canvas bitmap.
+ *
+ * =========================================================================================
+ * OEM STATUS BAR RENDERING CAVEATS & ARCHITECTURE:
+ * 1. Stock Android & Google Pixel:
+ *    Android since Lollipop (API 21+) treats notification small icons as strict alpha-masks.
+ *    Any RGB color is discarded by the system status bar compositor; only alpha transparency
+ *    is sampled and tinted (white in dark mode, dark gray in light mode).
+ *    Setting [Paint.isAntiAlias = false] is critical: soft anti-aliased edges create translucent
+ *    pixels that smear into blurry artifacts at ~24dp display scale. Binary opaque/transparent
+ *    pixels ensure maximum legibility.
+ *
+ * 2. Samsung One UI (One UI 3.x - 8.x):
+ *    One UI provides generous status bar icon bounds (~24-28dp) and handles monochrome bitmaps
+ *    cleanly. Stacked dual-line monospace text ("↓1.2M" / "↑45K") renders with distinct vertical
+ *    separation between download and upload rates.
+ *
+ * 3. Xiaomi (MIUI / HyperOS), OnePlus (OxygenOS), OPPO (ColorOS):
+ *    These OEMs aggressively compress status bar icons. Using monospace bold typefaces and
+ *    dynamic horizontal auto-scaling prevents character clipping across notches/punch-holes.
+ * =========================================================================================
  */
 class NotificationHelper(private val context: Context) {
 
     private val notificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    // Pre-allocated drawing objects to eliminate GC churn and jank across 1-second ticks
+    // Pre-allocated drawing objects to eliminate GC allocations and frame drops on 1-second ticks
     private val iconBitmap: Bitmap = Bitmap.createBitmap(ICON_SIZE, ICON_SIZE, Bitmap.Config.ARGB_8888)
     private val iconCanvas: Canvas = Canvas(iconBitmap)
-    private val textBounds: Rect = Rect()
+    private val topBounds: Rect = Rect()
+    private val botBounds: Rect = Rect()
+
     private val iconPaint: Paint = Paint().apply {
-        // Anti-aliasing OFF: every pixel is fully opaque or fully transparent.
-        // Android renders notification small icons as white-alpha silhouettes since Lollipop.
-        // Soft/blurry anti-aliased edges cause digits to smear at ~24dp display size,
-        // making "0" look like "O". Crisp pixel edges solve this.
+        // Anti-aliasing OFF: guarantees 100% opaque or 100% transparent pixels
+        // Eliminates gray-fringing blur at status bar icon scale (~24dp)
         isAntiAlias = false
         color = Color.WHITE
-        typeface = Typeface.DEFAULT_BOLD
+        typeface = Typeface.create(Typeface.MONOSPACE, Typeface.BOLD)
         textAlign = Paint.Align.CENTER
     }
 
@@ -51,7 +72,7 @@ class NotificationHelper(private val context: Context) {
     }
 
     /**
-     * Creates a low-importance NotificationChannel (no sound, no vibration, silent status bar presence).
+     * Creates a silent, low-importance NotificationChannel to ensure unobtrusive background presence.
      */
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -71,34 +92,68 @@ class NotificationHelper(private val context: Context) {
     }
 
     /**
-     * Creates a dynamically-rendered status bar icon bitmap with the current speed number.
-     * Reuses pre-allocated Canvas and Paint instances for optimal performance.
+     * Generates a status bar icon bitmap.
+     * When [dualLine] is true, renders stacked two-line throughput ("↓ 1.2M" on top, "↑ 45K" on bottom).
+     * When [dualLine] is false, renders a large single-line active throughput number.
      *
-     * Renders NUMBER ONLY (no unit letter) at maximum size for 1–3 characters.
-     * Anti-aliasing is disabled for crisp pixel-perfect edges at ~24dp display size.
+     * @param downBps Raw download throughput in bytes per second.
+     * @param upBps Raw upload throughput in bytes per second.
+     * @param unit Selected unit format (Bytes/s vs Bits/s).
+     * @param dualLine True for stacked download/upload rows, false for single active rate.
      */
     @Synchronized
-    fun createSpeedIcon(speedText: String): IconCompat {
-        // Clear previous frame to full transparency
+    fun generateSpeedIcon(
+        downBps: Long,
+        upBps: Long,
+        unit: SpeedUnit = SpeedUnit.BYTES_PER_SEC,
+        dualLine: Boolean = true
+    ): IconCompat {
+        // Clear canvas frame to full transparency
         iconBitmap.eraseColor(Color.TRANSPARENT)
 
-        // Font sizing optimized for number-only strings (max 3 chars).
-        // Removing unit letters (K/M/G) allows significantly larger digits
-        // than the old 4-6 char strings, improving legibility at ~24dp.
-        val textSize = when (speedText.length) {
-            1 -> 72f    // "0" — single digit, maximum possible size
-            2 -> 58f    // "25" — two digits, very large
-            3 -> 46f    // "850", "1.2" — three chars including decimal, still large
-            else -> 38f // safety fallback (should not occur with 3-char cap)
+        if (dualLine) {
+            val downStr = "↓" + SpeedFormatter.formatCompactSpeed(downBps, unit)
+            val upStr = "↑" + SpeedFormatter.formatCompactSpeed(upBps, unit)
+
+            // Dynamic font scaling based on the longest string length
+            val maxLen = maxOf(downStr.length, upStr.length)
+            val textSize = when {
+                maxLen <= 2 -> 40f  // e.g. "↓0", "↑0"
+                maxLen == 3 -> 36f  // e.g. "↓5K", "↑1M"
+                maxLen == 4 -> 32f  // e.g. "↓45K", "↑10M"
+                else -> 28f         // e.g. "↓1.2M", "↓850K", "↓999M"
+            }
+            iconPaint.textSize = textSize
+
+            // Calculate precise vertical centering for top row (Download)
+            iconPaint.getTextBounds(downStr, 0, downStr.length, topBounds)
+            val topX = ICON_SIZE / 2f
+            val topY = (ICON_SIZE * 0.28f) - topBounds.exactCenterY()
+            iconCanvas.drawText(downStr, topX, topY, iconPaint)
+
+            // Calculate precise vertical centering for bottom row (Upload)
+            iconPaint.getTextBounds(upStr, 0, upStr.length, botBounds)
+            val botX = ICON_SIZE / 2f
+            val botY = (ICON_SIZE * 0.74f) - botBounds.exactCenterY()
+            iconCanvas.drawText(upStr, botX, botY, iconPaint)
+        } else {
+            // Single-line fallback: large single number for maximum distance legibility
+            val activeBps = maxOf(downBps, upBps)
+            val singleStr = SpeedFormatter.formatNumberOnlySpeed(activeBps, unit)
+
+            val textSize = when (singleStr.length) {
+                1 -> 72f    // "0" — single digit maximum size
+                2 -> 58f    // "25" — two digits
+                3 -> 46f    // "850", "1.2" — three chars
+                else -> 38f // fallback
+            }
+            iconPaint.textSize = textSize
+
+            iconPaint.getTextBounds(singleStr, 0, singleStr.length, topBounds)
+            val x = ICON_SIZE / 2f
+            val y = (ICON_SIZE / 2f) - topBounds.exactCenterY()
+            iconCanvas.drawText(singleStr, x, y, iconPaint)
         }
-        iconPaint.textSize = textSize
-
-        // Measure exact text bounds to center both horizontally and vertically
-        iconPaint.getTextBounds(speedText, 0, speedText.length, textBounds)
-        val x = ICON_SIZE / 2f
-        val y = (ICON_SIZE / 2f) - textBounds.exactCenterY()
-
-        iconCanvas.drawText(speedText, x, y, iconPaint)
 
         return IconCompat.createWithBitmap(iconBitmap)
     }
@@ -106,18 +161,20 @@ class NotificationHelper(private val context: Context) {
     /**
      * Builds the persistent notification for the Foreground Service.
      */
-    fun buildNotification(speed: NetworkSpeed, unit: SpeedUnit): Notification {
-        val downloadStr = SpeedFormatter.formatDownload(speed.rxBytesPerSec, unit)
-        val uploadStr = SpeedFormatter.formatUpload(speed.txBytesPerSec, unit)
-        val combinedSpeed = "$downloadStr  $uploadStr"
+    fun buildNotification(
+        speed: NetworkSpeed,
+        unit: SpeedUnit,
+        dualLineIcon: Boolean = true
+    ): Notification {
+        val speedIcon = generateSpeedIcon(
+            downBps = speed.rxBytesPerSec,
+            upBps = speed.txBytesPerSec,
+            unit = unit,
+            dualLine = dualLineIcon
+        )
 
-        val totalDataStr = "Session: " + SpeedFormatter.formatDataUsage(speed.totalRxBytes + speed.totalTxBytes)
-
-        // Use active throughput (max of rx/tx) so uploads also update the status bar number
-        val activeSpeedBytes = maxOf(speed.rxBytesPerSec, speed.txBytesPerSec)
-        val compactSpeed = SpeedFormatter.formatCompactSpeed(activeSpeedBytes, unit)
-
-        val speedIcon = createSpeedIcon(compactSpeed)
+        val combinedSpeedTitle = SpeedFormatter.formatCombined(speed.rxBytesPerSec, speed.txBytesPerSec, unit)
+        val sessionDataText = SpeedFormatter.formatDetailedDataUsage(speed.totalRxBytes, speed.totalTxBytes)
 
         // PendingIntent to launch MainActivity on notification click
         val contentIntent = Intent(context, MainActivity::class.java).apply {
@@ -130,7 +187,7 @@ class NotificationHelper(private val context: Context) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Action intent to stop monitoring directly from the notification
+        // Action intent to stop monitoring directly from notification shade
         val stopIntent = Intent(context, SpeedMonitorService::class.java).apply {
             action = SpeedMonitorService.ACTION_STOP_SERVICE
         }
@@ -143,8 +200,8 @@ class NotificationHelper(private val context: Context) {
 
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(speedIcon)
-            .setContentTitle(combinedSpeed)
-            .setContentText(totalDataStr)
+            .setContentTitle(combinedSpeedTitle)
+            .setContentText(sessionDataText)
             .setSubText(context.getString(R.string.app_name))
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
@@ -162,16 +219,16 @@ class NotificationHelper(private val context: Context) {
     }
 
     /**
-     * Updates an existing notification with fresh speed metrics.
+     * Updates the persistent notification with the latest throughput measurements.
      */
-    fun update(speed: NetworkSpeed, unit: SpeedUnit) {
-        val notification = buildNotification(speed, unit)
+    fun update(speed: NetworkSpeed, unit: SpeedUnit, dualLineIcon: Boolean = true) {
+        val notification = buildNotification(speed, unit, dualLineIcon)
         notificationManager.notify(NOTIFICATION_ID, notification)
     }
 
     companion object {
         const val CHANNEL_ID = "channel_network_speed_monitor"
         const val NOTIFICATION_ID = 1001
-        private const val ICON_SIZE = 96 // 96x96 px status bar icon size (xxhdpi standard)
+        private const val ICON_SIZE = 96 // 96x96 px (xxhdpi standard status bar canvas)
     }
 }

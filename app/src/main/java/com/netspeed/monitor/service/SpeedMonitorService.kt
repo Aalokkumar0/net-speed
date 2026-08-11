@@ -26,8 +26,12 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 /**
- * Continuous Foreground Service that periodically samples network throughput using TrafficStats,
- * updates the persistent status bar notification icon, and publishes real-time metrics to the UI.
+ * Continuous Foreground Service that periodically samples network throughput via [TrafficStats],
+ * applies moving average smoothing to eliminate flicker, updates the status bar icon, and publishes
+ * metrics to the UI.
+ *
+ * Runs under android:foregroundServiceType="dataSync" to maintain reliable continuous execution
+ * on Android 14+ (API 34) and Android 15 (API 35).
  */
 class SpeedMonitorService : Service() {
 
@@ -67,7 +71,12 @@ class SpeedMonitorService : Service() {
 
     private fun startForegroundNotification() {
         val unit = preferenceManager.getSpeedUnit()
-        val initialNotification = notificationHelper.buildNotification(NetworkSpeed.ZERO, unit)
+        val dualLine = preferenceManager.getDualLineIconEnabled()
+        val initialNotification = notificationHelper.buildNotification(
+            speed = NetworkSpeed.ZERO,
+            unit = unit,
+            dualLineIcon = dualLine
+        )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(
@@ -93,17 +102,33 @@ class SpeedMonitorService : Service() {
                 tickIndex++
                 val loopStartMs = SystemClock.elapsedRealtime()
                 val intervalSinceLastLoopStartMs = if (lastLoopStartTime > 0L) loopStartMs - lastLoopStartTime else 0L
+
+                // Detect large gaps (e.g. device was asleep / Doze for > 5s) and reset baselines
+                // so we don't show a huge artificial spike after resuming
+                if (lastLoopStartTime > 0L && intervalSinceLastLoopStartMs > MAX_LOOP_GAP_MS) {
+                    Log.w(TAG, "[DOZE_GAP_DETECTED] Loop gap was ${intervalSinceLastLoopStartMs}ms. Resetting tracker baseline.")
+                    trafficTracker.reset()
+                }
                 lastLoopStartTime = loopStartMs
 
+                // Sync user configured smoothing window
+                trafficTracker.windowSize = preferenceManager.getSmoothingWindowSize()
+
                 val t0 = SystemClock.elapsedRealtime()
-                val speed = trafficTracker.sample()
+                val snapshot = trafficTracker.sampleSnapshot()
+                val speed = snapshot.toNetworkSpeed()
                 val sampleDurationMs = SystemClock.elapsedRealtime() - t0
 
                 _currentSpeed.value = speed
 
                 val t1 = SystemClock.elapsedRealtime()
                 val speedUnit = preferenceManager.getSpeedUnit()
-                notificationHelper.update(speed, speedUnit)
+                val isDualLine = preferenceManager.getDualLineIconEnabled()
+                notificationHelper.update(
+                    speed = speed,
+                    unit = speedUnit,
+                    dualLineIcon = isDualLine
+                )
                 val notifyDurationMs = SystemClock.elapsedRealtime() - t1
 
                 val totalWorkDurationMs = SystemClock.elapsedRealtime() - loopStartMs
@@ -149,6 +174,7 @@ class SpeedMonitorService : Service() {
         const val ACTION_START_SERVICE = "com.netspeed.monitor.action.START"
         const val ACTION_STOP_SERVICE = "com.netspeed.monitor.action.STOP"
         private const val SAMPLE_INTERVAL_MS = 1000L
+        private const val MAX_LOOP_GAP_MS = 5000L
 
         private val _isServiceRunning = MutableStateFlow(false)
         val isServiceRunning: StateFlow<Boolean> = _isServiceRunning.asStateFlow()

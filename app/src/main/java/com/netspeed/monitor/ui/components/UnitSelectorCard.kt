@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Height
 import androidx.compose.material.icons.filled.PowerSettingsNew
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.Card
@@ -49,6 +50,8 @@ fun UnitSelectorCard(
     onUnitSelected: (SpeedUnit) -> Unit,
     startOnBoot: Boolean,
     onStartOnBootChanged: (Boolean) -> Unit,
+    dualLineIcon: Boolean = true,
+    onDualLineIconChanged: (Boolean) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -64,7 +67,7 @@ fun UnitSelectorCard(
                 .padding(20.dp)
         ) {
             Text(
-                text = "FORMAT & BOOT SETTINGS",
+                text = "FORMAT & ICON SETTINGS",
                 style = MaterialTheme.typography.labelSmall.copy(
                     letterSpacing = 1.5.sp,
                     fontWeight = FontWeight.Bold
@@ -105,7 +108,66 @@ fun UnitSelectorCard(
                 )
             }
 
-            Spacer(modifier = Modifier.height(18.dp))
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Dual-Line Status Bar Icon Toggle
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(DarkSurfaceVariant)
+                    .padding(14.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(36.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color(0x22FFFFFF)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Height,
+                            contentDescription = null,
+                            tint = CyanAccent,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    Column {
+                        Text(
+                            text = "Stacked Dual-Line Icon",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = TextPrimary
+                        )
+                        Text(
+                            text = if (dualLineIcon) "Shows ↓ download & ↑ upload stacked" else "Shows single active speed number",
+                            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 12.sp),
+                            color = TextMuted
+                        )
+                    }
+                }
+
+                Switch(
+                    checked = dualLineIcon,
+                    onCheckedChange = onDualLineIconChanged,
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = DarkBg,
+                        checkedTrackColor = CyanAccent,
+                        uncheckedThumbColor = TextMuted,
+                        uncheckedTrackColor = SwitchTrackInactive
+                    )
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
 
             // Start on Boot Switch Tile
             Row(

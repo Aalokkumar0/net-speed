@@ -85,16 +85,16 @@ object SpeedFormatter {
     }
 
     /**
-     * Formats a number-only speed string for status bar icon bitmaps.
-     * Returns ONLY the numeric value with NO unit suffix (K/M/G), max 3 characters.
-     * Unit context is shown in the expanded notification body text instead.
+     * Formats a compact string (max <= 4 characters) suitable for status bar icons.
+     * Includes abbreviated unit suffix (K/M/G) for unambiguous stacked readings.
      *
-     * Examples: "0", "500", "1.2", "25", "250", "999"
+     * Examples: "0", "45K", "850K", "1.2M", "9.9M", "10M", "25M", "999M", "1.5G"
      *
-     * The value represents KB/s or Kbps depending on [unit], transitioning to
-     * MB/s or Mbps scale at >= 1M, capped at "999" for GB+ speeds.
+     * Features strict boundary protection:
+     * - Threshold 9_950_000 ensures %.1f never rounds up to "10.0" (which would be 4 chars + unit).
+     *   Instead, values >= 9.95M transition cleanly to integer "10M" (3 chars).
      */
-    fun formatCompactSpeed(bytesPerSec: Long, unit: SpeedUnit): String {
+    fun formatCompactSpeed(bytesPerSec: Long, unit: SpeedUnit = SpeedUnit.BYTES_PER_SEC): String {
         val safeBytes = if (bytesPerSec < 0) 0L else bytesPerSec
 
         val value: Double = when (unit) {
@@ -103,19 +103,49 @@ object SpeedFormatter {
         }
 
         return when {
-            // Below 1 K → show "0"
+            // Below 1 K → "0"
             value < 1_000.0 -> "0"
-            // 1 K .. 999 K → whole number KB/Kbps: "1" to "999"
+
+            // 1 K .. 999 K → "1K" to "999K" (2-4 chars)
+            value < 1_000_000.0 -> "${(value / 1_000.0).toLong()}K"
+
+            // 1.0 M .. 9.9 M → "1.0M" to "9.9M" (4 chars)
+            // Boundary: 9_950_000 is used so String.format doesn't round 9.96M to "10.0M" (5 chars)
+            value < 9_950_000.0 -> String.format(Locale.US, "%.1fM", value / 1_000_000.0)
+
+            // 10 M .. 999 M → "10M" to "999M" (3-4 chars)
+            value < 1_000_000_000.0 -> {
+                val rounded = kotlin.math.round(value / 1_000_000.0).toLong()
+                "${rounded.coerceAtMost(999)}M"
+            }
+
+            // 1.0 G .. 9.9 G → "1.0G" to "9.9G" (4 chars)
+            value < 9_950_000_000.0 -> String.format(Locale.US, "%.1fG", value / 1_000_000_000.0)
+
+            // 10 G+ → "999M" / max cap
+            else -> "999M"
+        }
+    }
+
+    /**
+     * Formats number-only speed string (without unit suffix, max 3 chars) for single-line icon fallback.
+     */
+    fun formatNumberOnlySpeed(bytesPerSec: Long, unit: SpeedUnit = SpeedUnit.BYTES_PER_SEC): String {
+        val safeBytes = if (bytesPerSec < 0) 0L else bytesPerSec
+
+        val value: Double = when (unit) {
+            SpeedUnit.BYTES_PER_SEC -> safeBytes.toDouble()
+            SpeedUnit.BITS_PER_SEC -> (safeBytes * 8).toDouble()
+        }
+
+        return when {
+            value < 1_000.0 -> "0"
             value < 1_000_000.0 -> "${(value / 1_000.0).toLong()}"
-            // 1.0 M .. 9.9 M → one decimal: "1.0" to "9.9" (3 chars)
-            // Threshold 9_950_000 ensures %.1f never rounds up to "10.0"
             value < 9_950_000.0 -> String.format(Locale.US, "%.1f", value / 1_000_000.0)
-            // 10 M .. 999 M → whole number: "10" to "999" (2-3 chars)
             value < 1_000_000_000.0 -> {
                 val rounded = kotlin.math.round(value / 1_000_000.0).toLong()
                 "${rounded.coerceAtMost(999)}"
             }
-            // 1 G+ → cap at "999"
             else -> "999"
         }
     }
@@ -131,5 +161,12 @@ object SpeedFormatter {
             bytes >= KB_BYTES -> String.format(Locale.US, "%.1f KB", bytes / KB_BYTES)
             else -> String.format(Locale.US, "%d B", totalBytes)
         }
+    }
+
+    /**
+     * Formats separate session download and upload data usage.
+     */
+    fun formatDetailedDataUsage(rxBytes: Long, txBytes: Long): String {
+        return "Session: ↓ ${formatDataUsage(rxBytes)}  ↑ ${formatDataUsage(txBytes)}"
     }
 }

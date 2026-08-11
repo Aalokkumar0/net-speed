@@ -27,6 +27,7 @@ import com.netspeed.monitor.data.PreferenceManager
 import com.netspeed.monitor.service.SpeedMonitorService
 import com.netspeed.monitor.ui.MainScreen
 import com.netspeed.monitor.ui.theme.NetworkSpeedMonitorTheme
+import com.netspeed.monitor.utils.SamsungDeviceUtils
 
 class MainActivity : ComponentActivity() {
 
@@ -58,6 +59,7 @@ class MainActivity : ComponentActivity() {
 
                 val speedUnit by preferenceManager.speedUnit.collectAsState()
                 val startOnBoot by preferenceManager.startOnBoot.collectAsState()
+                val dualLineIcon by preferenceManager.dualLineIconEnabled.collectAsState()
 
                 var hasNotificationPermission by remember {
                     mutableStateOf(checkNotificationPermission())
@@ -85,6 +87,7 @@ class MainActivity : ComponentActivity() {
                     currentSpeed = currentSpeed,
                     speedUnit = speedUnit,
                     startOnBoot = startOnBoot,
+                    dualLineIcon = dualLineIcon,
                     hasNotificationPermission = hasNotificationPermission,
                     isIgnoringBatteryOptimizations = isIgnoringBatteryOptimizations,
                     onToggleService = { enable ->
@@ -108,6 +111,12 @@ class MainActivity : ComponentActivity() {
                     },
                     onStartOnBootChanged = { enable ->
                         preferenceManager.setStartOnBoot(enable)
+                    },
+                    onDualLineIconChanged = { enable ->
+                        preferenceManager.setDualLineIconEnabled(enable)
+                        if (isServiceRunning) {
+                            SpeedMonitorService.start(this)
+                        }
                     },
                     onRequestNotificationPermission = {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -139,7 +148,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun requestDisableBatteryOptimization() {
-        val launched = com.netspeed.monitor.utils.SamsungDeviceUtils.launchBatteryOptimization(this)
+        val launched = SamsungDeviceUtils.launchBatteryOptimization(this)
         if (!launched) {
             Toast.makeText(this, "Could not open battery settings", Toast.LENGTH_SHORT).show()
         }
