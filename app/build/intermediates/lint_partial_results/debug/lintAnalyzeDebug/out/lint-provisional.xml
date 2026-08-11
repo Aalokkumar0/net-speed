@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.7.3" type="conditional_incidents">
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/netspeed/monitor/notification/NotificationHelper.kt"
+            line="161"
+            column="9"
+            startOffset="6475"
+            endLine="161"
+            endColumn="66"
+            endOffset="6532"/>
+    </incident>
+
+    <incident
+        id="BatteryLife"
+        severity="warning"
+        message="Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/netspeed/monitor/MainActivity.kt"
+            line="143"
+            column="42"
+            startOffset="6025"
+            endLine="143"
+            endColumn="85"
+            endOffset="6068"/>
+        <map>
+            <condition targetGE="23"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 35">
+        <fix-replace
+            description="Delete tools:targetApi"
+            replacement=""
+            priority="0">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+                startOffset="1548"
+                endOffset="1568"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="32"
+            column="9"
+            startOffset="1548"
+            endLine="32"
+            endColumn="29"
+            endOffset="1568"/>
+        <map>
+            <condition minGE="fffffffc00000000"/>
+        </map>
+    </incident>
+
+</incidents>

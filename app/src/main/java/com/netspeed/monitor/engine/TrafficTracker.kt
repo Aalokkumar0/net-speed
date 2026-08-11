@@ -2,6 +2,7 @@ package com.netspeed.monitor.engine
 
 import android.net.TrafficStats
 import android.os.SystemClock
+import android.util.Log
 import com.netspeed.monitor.data.NetworkSpeed
 
 /**
@@ -39,8 +40,8 @@ class TrafficTracker {
         val rawRx = TrafficStats.getTotalRxBytes()
         val rawTx = TrafficStats.getTotalTxBytes()
 
-        val currentRx = if (rawRx == TrafficStats.UNSUPPORTED.toLong() || rawRx < 0L) 0L else rawRx
-        val currentTx = if (rawTx == TrafficStats.UNSUPPORTED.toLong() || rawTx < 0L) 0L else rawTx
+        val currentRx: Long = if (rawRx == TrafficStats.UNSUPPORTED.toLong() || rawRx < 0L) 0L else rawRx
+        val currentTx: Long = if (rawTx == TrafficStats.UNSUPPORTED.toLong() || rawTx < 0L) 0L else rawTx
 
         // Establish session baseline if not set
         if (sessionStartRxBytes == -1L) sessionStartRxBytes = currentRx
@@ -51,6 +52,10 @@ class TrafficTracker {
             lastRxBytes = currentRx
             lastTxBytes = currentTx
             lastSampleTimeMs = currentTimeMs
+            Log.d(
+                TAG,
+                "[BASELINE] rawRxBytes=$currentRx (Long), rawTxBytes=$currentTx (Long) | first-tick initialized"
+            )
             return NetworkSpeed(
                 rxBytesPerSec = 0L,
                 txBytesPerSec = 0L,
@@ -60,18 +65,18 @@ class TrafficTracker {
             )
         }
 
-        val elapsedMs = currentTimeMs - lastSampleTimeMs
-        val elapsedSeconds = elapsedMs.toDouble() / 1000.0
+        val elapsedMs: Long = currentTimeMs - lastSampleTimeMs
+        val elapsedSeconds: Double = elapsedMs.toDouble() / 1000.0
 
         // Edge case 2: Counter reset/rollover/reboot - if current < previous, re-baseline
-        val rxDelta = if (currentRx >= lastRxBytes) {
+        val rxDelta: Long = if (currentRx >= lastRxBytes) {
             currentRx - lastRxBytes
         } else {
             sessionStartRxBytes = currentRx
             0L
         }
 
-        val txDelta = if (currentTx >= lastTxBytes) {
+        val txDelta: Long = if (currentTx >= lastTxBytes) {
             currentTx - lastTxBytes
         } else {
             sessionStartTxBytes = currentTx
@@ -83,25 +88,28 @@ class TrafficTracker {
         lastSampleTimeMs = currentTimeMs
 
         // Core math: bytesDelta.toDouble() / elapsedSeconds (never integer division)
-        val rxSpeedBytesPerSec = if (elapsedSeconds > 0.0) {
-            (rxDelta.toDouble() / elapsedSeconds).toLong()
-        } else {
-            0L
-        }
+        val rxSpeedDouble: Double = if (elapsedSeconds > 0.0) rxDelta.toDouble() / elapsedSeconds else 0.0
+        val txSpeedDouble: Double = if (elapsedSeconds > 0.0) txDelta.toDouble() / elapsedSeconds else 0.0
 
-        val txSpeedBytesPerSec = if (elapsedSeconds > 0.0) {
-            (txDelta.toDouble() / elapsedSeconds).toLong()
-        } else {
-            0L
-        }
+        val rxSpeedBytesPerSec: Long = rxSpeedDouble.toLong()
+        val txSpeedBytesPerSec: Long = txSpeedDouble.toLong()
 
-        val sessionTotalRx = if (sessionStartRxBytes != -1L && currentRx >= sessionStartRxBytes) {
+        val sessionTotalRx: Long = if (sessionStartRxBytes != -1L && currentRx >= sessionStartRxBytes) {
             currentRx - sessionStartRxBytes
         } else 0L
 
-        val sessionTotalTx = if (sessionStartTxBytes != -1L && currentTx >= sessionStartTxBytes) {
+        val sessionTotalTx: Long = if (sessionStartTxBytes != -1L && currentTx >= sessionStartTxBytes) {
             currentTx - sessionStartTxBytes
         } else 0L
+
+        Log.d(
+            TAG,
+            "[TICK] rawRxBytes=$currentRx (Long), rawTxBytes=$currentTx (Long) | " +
+            "rxDelta=$rxDelta (Long), txDelta=$txDelta (Long) | " +
+            "elapsedSeconds=$elapsedSeconds (Double) | " +
+            "computedRxDouble=$rxSpeedDouble (Double) -> rxSpeedLong=$rxSpeedBytesPerSec (Long, B/s) | " +
+            "computedTxDouble=$txSpeedDouble (Double) -> txSpeedLong=$txSpeedBytesPerSec (Long, B/s)"
+        )
 
         return NetworkSpeed(
             rxBytesPerSec = rxSpeedBytesPerSec,
@@ -110,5 +118,9 @@ class TrafficTracker {
             totalTxBytes = sessionTotalTx,
             timestamp = System.currentTimeMillis()
         )
+    }
+
+    companion object {
+        private const val TAG = "SpeedDebug"
     }
 }

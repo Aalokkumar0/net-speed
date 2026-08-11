@@ -6,6 +6,8 @@ import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
+import android.os.SystemClock
+import android.util.Log
 import androidx.core.content.ContextCompat
 import com.netspeed.monitor.data.NetworkSpeed
 import com.netspeed.monitor.data.PreferenceManager
@@ -30,6 +32,7 @@ import kotlinx.coroutines.launch
 class SpeedMonitorService : Service() {
 
     private val serviceJob = SupervisorJob()
+    // Dedicated Default dispatcher for predictable high-priority background polling
     private val serviceScope = CoroutineScope(Dispatchers.Default + serviceJob)
 
     private lateinit var trafficTracker: TrafficTracker
@@ -83,14 +86,39 @@ class SpeedMonitorService : Service() {
         trafficTracker.reset()
 
         pollingJob = serviceScope.launch {
+            var tickIndex = 0L
+            var lastLoopStartTime = 0L
+
             while (isActive) {
+                tickIndex++
+                val loopStartMs = SystemClock.elapsedRealtime()
+                val intervalSinceLastLoopStartMs = if (lastLoopStartTime > 0L) loopStartMs - lastLoopStartTime else 0L
+                lastLoopStartTime = loopStartMs
+
+                val t0 = SystemClock.elapsedRealtime()
                 val speed = trafficTracker.sample()
+                val sampleDurationMs = SystemClock.elapsedRealtime() - t0
+
                 _currentSpeed.value = speed
 
+                val t1 = SystemClock.elapsedRealtime()
                 val speedUnit = preferenceManager.getSpeedUnit()
                 notificationHelper.update(speed, speedUnit)
+                val notifyDurationMs = SystemClock.elapsedRealtime() - t1
 
-                delay(SAMPLE_INTERVAL_MS)
+                val totalWorkDurationMs = SystemClock.elapsedRealtime() - loopStartMs
+
+                // Drift-compensated sleep to ensure precise 1000ms periodic intervals
+                val delayTimeMs = (SAMPLE_INTERVAL_MS - totalWorkDurationMs).coerceAtLeast(10L)
+
+                Log.d(
+                    TAG,
+                    "[LOOP_TICK #$tickIndex] intervalSinceLastStart=${intervalSinceLastLoopStartMs}ms | " +
+                    "workDuration=${totalWorkDurationMs}ms (sample=${sampleDurationMs}ms, notify=${notifyDurationMs}ms) | " +
+                    "scheduledDelay=${delayTimeMs}ms"
+                )
+
+                delay(delayTimeMs)
             }
         }
     }
@@ -117,6 +145,7 @@ class SpeedMonitorService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     companion object {
+        private const val TAG = "SpeedDebug"
         const val ACTION_START_SERVICE = "com.netspeed.monitor.action.START"
         const val ACTION_STOP_SERVICE = "com.netspeed.monitor.action.STOP"
         private const val SAMPLE_INTERVAL_MS = 1000L
