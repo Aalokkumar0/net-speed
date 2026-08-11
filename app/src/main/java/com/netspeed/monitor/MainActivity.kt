@@ -139,18 +139,9 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun requestDisableBatteryOptimization() {
-        try {
-            val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-                data = Uri.parse("package:$packageName")
-            }
-            startActivity(intent)
-        } catch (e: Exception) {
-            try {
-                val fallbackIntent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
-                startActivity(fallbackIntent)
-            } catch (ex: Exception) {
-                Toast.makeText(this, "Could not open battery settings", Toast.LENGTH_SHORT).show()
-            }
+        val launched = com.netspeed.monitor.utils.SamsungDeviceUtils.launchBatteryOptimization(this)
+        if (!launched) {
+            Toast.makeText(this, "Could not open battery settings", Toast.LENGTH_SHORT).show()
         }
     }
 }

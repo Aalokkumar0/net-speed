@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.netspeed.monitor.SamsungDeviceUtilsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-11T10:27:35.228Z" hostname="Aaloks-Mac-mini.local" time="0.003">
+  <properties/>
+  <testcase name="OneUIInfo data class holds expected values" classname="com.netspeed.monitor.SamsungDeviceUtilsTest" time="0.0"/>
+  <testcase name="getOneUIInfo returns non-null result on current platform" classname="com.netspeed.monitor.SamsungDeviceUtilsTest" time="0.003"/>
+  <testcase name="OneUIInfo non-Samsung state" classname="com.netspeed.monitor.SamsungDeviceUtilsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
