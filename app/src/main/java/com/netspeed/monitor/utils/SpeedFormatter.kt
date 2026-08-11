@@ -85,8 +85,8 @@ object SpeedFormatter {
     }
 
     /**
-     * Formats compact single-string speed for status bar icon bitmaps.
-     * Examples: "0K", "850K", "1.2M", "25M", "250M", "1.1G"
+     * Formats compact single-string speed for status bar icon bitmaps with space between number and unit.
+     * Examples: "0 K", "850 K", "1.2 M", "25 M", "250 M", "1.1 G"
      */
     fun formatCompactSpeed(bytesPerSec: Long, unit: SpeedUnit): String {
         val safeBytes = if (bytesPerSec < 0) 0L else bytesPerSec
@@ -94,21 +94,21 @@ object SpeedFormatter {
         return when (unit) {
             SpeedUnit.BYTES_PER_SEC -> {
                 when {
-                    safeBytes < 1000L -> "0K"
-                    safeBytes < 1_000_000L -> "${safeBytes / 1000L}K"
-                    safeBytes < 10_000_000L -> String.format(Locale.US, "%.1fM", safeBytes / 1_000_000.0)
-                    safeBytes < 1_000_000_000L -> "${safeBytes / 1_000_000L}M"
-                    else -> String.format(Locale.US, "%.1fG", safeBytes / 1_000_000_000.0)
+                    safeBytes < 1000L -> "0 K"
+                    safeBytes < 1_000_000L -> "${safeBytes / 1000L} K"
+                    safeBytes < 10_000_000L -> String.format(Locale.US, "%.1f M", safeBytes / 1_000_000.0)
+                    safeBytes < 1_000_000_000L -> "${safeBytes / 1_000_000L} M"
+                    else -> String.format(Locale.US, "%.1f G", safeBytes / 1_000_000_000.0)
                 }
             }
             SpeedUnit.BITS_PER_SEC -> {
                 val bitsPerSec = safeBytes * 8L
                 when {
-                    bitsPerSec < 1000L -> "0K"
-                    bitsPerSec < 1_000_000L -> "${bitsPerSec / 1000L}K"
-                    bitsPerSec < 10_000_000L -> String.format(Locale.US, "%.1fM", bitsPerSec / 1_000_000.0)
-                    bitsPerSec < 1_000_000_000L -> "${bitsPerSec / 1_000_000L}M"
-                    else -> String.format(Locale.US, "%.1fG", bitsPerSec / 1_000_000_000.0)
+                    bitsPerSec < 1000L -> "0 K"
+                    bitsPerSec < 1_000_000L -> "${bitsPerSec / 1000L} K"
+                    bitsPerSec < 10_000_000L -> String.format(Locale.US, "%.1f M", bitsPerSec / 1_000_000.0)
+                    bitsPerSec < 1_000_000_000L -> "${bitsPerSec / 1_000_000L} M"
+                    else -> String.format(Locale.US, "%.1f G", bitsPerSec / 1_000_000_000.0)
                 }
             }
         }

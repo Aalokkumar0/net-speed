@@ -52,19 +52,19 @@ class SpeedFormatterTest {
     }
 
     @Test
-    fun `formatCompactSpeed formats compact status bar icons correctly`() {
+    fun `formatCompactSpeed formats compact status bar icons with spaces correctly`() {
         // Bytes per sec
-        assertEquals("0K", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("500K", SpeedFormatter.formatCompactSpeed(500_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("1.2M", SpeedFormatter.formatCompactSpeed(1_240_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("25M", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("250M", SpeedFormatter.formatCompactSpeed(250_000_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("1.5G", SpeedFormatter.formatCompactSpeed(1_500_000_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("0 K", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("500 K", SpeedFormatter.formatCompactSpeed(500_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("1.2 M", SpeedFormatter.formatCompactSpeed(1_240_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("25 M", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("250 M", SpeedFormatter.formatCompactSpeed(250_000_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("1.5 G", SpeedFormatter.formatCompactSpeed(1_500_000_000L, SpeedUnit.BYTES_PER_SEC))
 
         // Bits per sec
-        assertEquals("0K", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BITS_PER_SEC))
-        assertEquals("400K", SpeedFormatter.formatCompactSpeed(50_000L, SpeedUnit.BITS_PER_SEC)) // 50KB = 400Kb
-        assertEquals("9.6M", SpeedFormatter.formatCompactSpeed(1_200_000L, SpeedUnit.BITS_PER_SEC)) // 1.2MB = 9.6Mb
-        assertEquals("200M", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BITS_PER_SEC)) // 25MB = 200Mb
+        assertEquals("0 K", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BITS_PER_SEC))
+        assertEquals("400 K", SpeedFormatter.formatCompactSpeed(50_000L, SpeedUnit.BITS_PER_SEC)) // 50KB = 400Kb
+        assertEquals("9.6 M", SpeedFormatter.formatCompactSpeed(1_200_000L, SpeedUnit.BITS_PER_SEC)) // 1.2MB = 9.6Mb
+        assertEquals("200 M", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BITS_PER_SEC)) // 25MB = 200Mb
     }
 }

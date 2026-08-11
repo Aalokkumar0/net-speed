@@ -68,22 +68,24 @@ class NotificationHelper(private val context: Context) {
     /**
      * Creates a dynamically-rendered status bar icon bitmap with the current speed number.
      * Reuses pre-allocated Canvas and Paint instances for optimal performance.
+     * Calibrated font sizing ensures strings with space like "0 K", "25 M", "250 M" fit
+     * comfortably without any clipping within the 96x96 canvas bounds.
      */
     @Synchronized
     fun createSpeedIcon(speedText: String): IconCompat {
         // Clear previous frame to full transparency
         iconBitmap.eraseColor(Color.TRANSPARENT)
 
-        // Select text size to fit within 96x96 status bar canvas
+        // Select text size to fit within 96x96 status bar canvas with padding
         val textSize = when {
-            speedText.length <= 2 -> 58f
-            speedText.length == 3 -> 50f
-            speedText.length == 4 -> 42f
-            else -> 36f
+            speedText.length <= 3 -> 48f
+            speedText.length == 4 -> 40f
+            speedText.length == 5 -> 32f
+            else -> 26f
         }
         iconPaint.textSize = textSize
 
-        // Center vertically and horizontally
+        // Measure exact text bounds to center both horizontally and vertically
         iconPaint.getTextBounds(speedText, 0, speedText.length, textBounds)
         val x = ICON_SIZE / 2f
         val y = (ICON_SIZE / 2f) - textBounds.exactCenterY()
