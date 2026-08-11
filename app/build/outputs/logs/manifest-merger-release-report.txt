@@ -1,0 +1,368 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:2:1-71:12
+INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:2:1-71:12
+INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:2:1-71:12
+INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:2:1-71:12
+MERGED from [androidx.compose.material3:material3-android:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/8eaacf95d4e06e59baef9aa884cd021f/transformed/material3-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-compose:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/fbdedcbbe8d7efb0a41bcc26116e51bf/transformed/activity-compose-1.9.3/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4f6661155de2a7673a344f9d8beca4e2/transformed/animation-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/a85b702cb67d26997b58d50683ffa811/transformed/material-ripple-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/3305b9fbf5bb706bfe802fd5a896d933/transformed/animation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/dcbebc82afb0c9e415c9a13925cf67db/transformed/foundation-layout-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/7c3379a3eeb4bb9a4febae97bffa5a0b/transformed/foundation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/5573f4cca5a659262580d2d9d1ff4271/transformed/ui-unit-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/de027ce49424520d29f06053e4c5cecc/transformed/ui-geometry-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/c46e0572db8ad004dcaf72399f69f75f/transformed/ui-util-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/98d01fb309078be02405183297f49c67/transformed/ui-text-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/740b2fe8c13443598721c0cea468c9af/transformed/ui-tooling-preview-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/f7ba68ffeac57d738335dda181403379/transformed/ui-graphics-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/198b655bfe74b079fedfd7c45ad5815d/transformed/material-icons-extended-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/c6f2d335cf9dc466d7269529ea29885f/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4e92338f1b91baad2e3787560db3006f/transformed/ui-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-ktx:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/a65ce52c54bd24a01e03aa820be53f8f/transformed/activity-ktx-1.9.3/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/6803095689cd46b9d12b35da475ef1f3/transformed/activity-1.9.3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/2926e0f6d386c02b79cc9d17c30fbe2a/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/aalok/.gradle/caches/8.14/transforms/cff8fc1ea6ea14b1130dc43c8a132c22/transformed/graphics-path-1.0.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/aalok/.gradle/caches/8.14/transforms/8016d39a5c3b38d467e611b1ef706ed4/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/aalok/.gradle/caches/8.14/transforms/159957632ec8536278e18b5c3f34ca98/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/563c9737733a722e0def0ea0c59a104c/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/a1021dd2619f40017ef9add45a5c2b86/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/4f5ff346a7d114b2a9c88a93aee3b0f5/transformed/lifecycle-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/c688399f5ceebe2577340c0e1afb8771/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/34cacdfe0c97a75e75444599364f7b1d/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/0d8bb1821e2c99b38c3061e5ef064bd5/transformed/lifecycle-runtime-compose-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/210727be95c333a29edc3d495c0375ba/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/2bf02c3e9bdbf3a799d5dba12eb3176e/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/df5a9d44cae6fbb31195756c1ec1a35e/transformed/core-ktx-1.15.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/ad1ab87c97199353b80db7bc0920a648/transformed/runtime-saveable-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/203c50b00eb2e000dbb7f79ba03119f5/transformed/runtime-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/33832315a4819318db696eaf648b10d5/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/aalok/.gradle/caches/8.14/transforms/ea6b69602e860a23ca0917d82309b972/transformed/tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/dcfcafe997cf444264b22ec1ddb02062/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/aalok/.gradle/caches/8.14/transforms/48eaa9b57cf4998c32260415721f7116/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/aalok/.gradle/caches/8.14/transforms/80f15059d56a4561d6e5e929cd5fd5a7/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:6:22-76
+uses-permission#android.permission.INTERNET
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:10:5-77
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:10:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE_DATA_SYNC
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:12:5-87
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:12:22-84
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:15:5-78
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:15:22-75
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:18:5-81
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:18:22-78
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:21:5-77
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:21:22-74
+uses-permission#android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:24:5-95
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:24:22-92
+application
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:26:5-69:19
+INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:26:5-69:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/dcfcafe997cf444264b22ec1ddb02062/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/dcfcafe997cf444264b22ec1ddb02062/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:33:9-35
+	android:label
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:31:9-41
+	android:fullBackupContent
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:29:9-54
+	android:roundIcon
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:32:9-54
+	tools:targetApi
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:35:9-29
+	android:icon
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:30:9-43
+	android:allowBackup
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:27:9-35
+	android:theme
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:34:9-57
+	android:dataExtractionRules
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:28:9-65
+activity#com.netspeed.monitor.MainActivity
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:38:9-47:20
+	android:launchMode
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:41:13-43
+	android:exported
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:40:13-36
+	android:theme
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:42:13-61
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:39:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:43:13-46:29
+action#android.intent.action.MAIN
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:44:17-69
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:44:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:45:17-77
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:45:27-74
+service#com.netspeed.monitor.service.SpeedMonitorService
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:50:9-54:56
+	android:enabled
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:52:13-35
+	android:exported
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:53:13-37
+	android:foregroundServiceType
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:54:13-53
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:51:13-56
+receiver#com.netspeed.monitor.receiver.BootReceiver
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:57:9-67:20
+	android:enabled
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:59:13-35
+	android:exported
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:60:13-36
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:58:13-50
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED+action:name:android.intent.action.QUICKBOOT_POWERON+category:name:android.intent.category.DEFAULT
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:61:13-66:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:62:17-79
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:62:25-76
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:63:17-84
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:63:25-81
+action#android.intent.action.QUICKBOOT_POWERON
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:64:17-82
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:64:25-79
+category#android.intent.category.DEFAULT
+ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:65:17-76
+	android:name
+		ADDED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:65:27-73
+uses-sdk
+INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+MERGED from [androidx.compose.material3:material3-android:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/8eaacf95d4e06e59baef9aa884cd021f/transformed/material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/8eaacf95d4e06e59baef9aa884cd021f/transformed/material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-compose:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/fbdedcbbe8d7efb0a41bcc26116e51bf/transformed/activity-compose-1.9.3/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/fbdedcbbe8d7efb0a41bcc26116e51bf/transformed/activity-compose-1.9.3/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4f6661155de2a7673a344f9d8beca4e2/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4f6661155de2a7673a344f9d8beca4e2/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/a85b702cb67d26997b58d50683ffa811/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/a85b702cb67d26997b58d50683ffa811/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/3305b9fbf5bb706bfe802fd5a896d933/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/3305b9fbf5bb706bfe802fd5a896d933/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/dcbebc82afb0c9e415c9a13925cf67db/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/dcbebc82afb0c9e415c9a13925cf67db/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/7c3379a3eeb4bb9a4febae97bffa5a0b/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/7c3379a3eeb4bb9a4febae97bffa5a0b/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/5573f4cca5a659262580d2d9d1ff4271/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/5573f4cca5a659262580d2d9d1ff4271/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/de027ce49424520d29f06053e4c5cecc/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/de027ce49424520d29f06053e4c5cecc/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/c46e0572db8ad004dcaf72399f69f75f/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/c46e0572db8ad004dcaf72399f69f75f/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/98d01fb309078be02405183297f49c67/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/98d01fb309078be02405183297f49c67/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/740b2fe8c13443598721c0cea468c9af/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/740b2fe8c13443598721c0cea468c9af/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/f7ba68ffeac57d738335dda181403379/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/f7ba68ffeac57d738335dda181403379/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/198b655bfe74b079fedfd7c45ad5815d/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/198b655bfe74b079fedfd7c45ad5815d/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/c6f2d335cf9dc466d7269529ea29885f/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/c6f2d335cf9dc466d7269529ea29885f/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4e92338f1b91baad2e3787560db3006f/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4e92338f1b91baad2e3787560db3006f/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/a65ce52c54bd24a01e03aa820be53f8f/transformed/activity-ktx-1.9.3/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/a65ce52c54bd24a01e03aa820be53f8f/transformed/activity-ktx-1.9.3/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/6803095689cd46b9d12b35da475ef1f3/transformed/activity-1.9.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.9.3] /Users/aalok/.gradle/caches/8.14/transforms/6803095689cd46b9d12b35da475ef1f3/transformed/activity-1.9.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/2926e0f6d386c02b79cc9d17c30fbe2a/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/2926e0f6d386c02b79cc9d17c30fbe2a/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/aalok/.gradle/caches/8.14/transforms/cff8fc1ea6ea14b1130dc43c8a132c22/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/aalok/.gradle/caches/8.14/transforms/cff8fc1ea6ea14b1130dc43c8a132c22/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/aalok/.gradle/caches/8.14/transforms/8016d39a5c3b38d467e611b1ef706ed4/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/aalok/.gradle/caches/8.14/transforms/8016d39a5c3b38d467e611b1ef706ed4/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/aalok/.gradle/caches/8.14/transforms/159957632ec8536278e18b5c3f34ca98/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/aalok/.gradle/caches/8.14/transforms/159957632ec8536278e18b5c3f34ca98/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/563c9737733a722e0def0ea0c59a104c/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/563c9737733a722e0def0ea0c59a104c/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/a1021dd2619f40017ef9add45a5c2b86/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/a1021dd2619f40017ef9add45a5c2b86/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/4f5ff346a7d114b2a9c88a93aee3b0f5/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/4f5ff346a7d114b2a9c88a93aee3b0f5/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/c688399f5ceebe2577340c0e1afb8771/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/c688399f5ceebe2577340c0e1afb8771/transformed/lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/34cacdfe0c97a75e75444599364f7b1d/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/34cacdfe0c97a75e75444599364f7b1d/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/0d8bb1821e2c99b38c3061e5ef064bd5/transformed/lifecycle-runtime-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/0d8bb1821e2c99b38c3061e5ef064bd5/transformed/lifecycle-runtime-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/210727be95c333a29edc3d495c0375ba/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/210727be95c333a29edc3d495c0375ba/transformed/lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/2bf02c3e9bdbf3a799d5dba12eb3176e/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/2bf02c3e9bdbf3a799d5dba12eb3176e/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/df5a9d44cae6fbb31195756c1ec1a35e/transformed/core-ktx-1.15.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/df5a9d44cae6fbb31195756c1ec1a35e/transformed/core-ktx-1.15.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/ad1ab87c97199353b80db7bc0920a648/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/ad1ab87c97199353b80db7bc0920a648/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/203c50b00eb2e000dbb7f79ba03119f5/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/203c50b00eb2e000dbb7f79ba03119f5/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/33832315a4819318db696eaf648b10d5/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/aalok/.gradle/caches/8.14/transforms/33832315a4819318db696eaf648b10d5/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/aalok/.gradle/caches/8.14/transforms/ea6b69602e860a23ca0917d82309b972/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/aalok/.gradle/caches/8.14/transforms/ea6b69602e860a23ca0917d82309b972/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/dcfcafe997cf444264b22ec1ddb02062/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/dcfcafe997cf444264b22ec1ddb02062/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/aalok/.gradle/caches/8.14/transforms/48eaa9b57cf4998c32260415721f7116/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/aalok/.gradle/caches/8.14/transforms/48eaa9b57cf4998c32260415721f7116/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/aalok/.gradle/caches/8.14/transforms/80f15059d56a4561d6e5e929cd5fd5a7/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/aalok/.gradle/caches/8.14/transforms/80f15059d56a4561d6e5e929cd5fd5a7/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+permission#com.netspeed.monitor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+uses-permission#com.netspeed.monitor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92

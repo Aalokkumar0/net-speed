@@ -1,0 +1,218 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.netspeed.monitor"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="35" />
+10
+11    <!-- Permissions required for network traffic monitoring -->
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:6:5-79
+12-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:7:5-67
+13-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:7:22-64
+14
+15    <!-- Foreground service permissions (Required for background monitoring on Android 9+) -->
+16    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+16-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:10:5-77
+16-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:10:22-74
+17    <!-- Android 14+ (API 34+) specific foreground service type permission -->
+18    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+18-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:12:5-87
+18-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:12:22-84
+19
+20    <!-- Floating overlay permission -->
+21    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+21-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:15:5-78
+21-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:15:22-75
+22
+23    <!-- Boot persistence permission -->
+24    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+24-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:18:5-81
+24-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:18:22-78
+25
+26    <!-- Android 13+ (API 33+) Notification runtime permission -->
+27    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+27-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:21:5-77
+27-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:21:22-74
+28
+29    <!-- Battery optimization exemption request permission -->
+30    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+30-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:24:5-95
+30-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:24:22-92
+31
+32    <permission
+32-->[androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+33        android:name="com.netspeed.monitor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+33-->[androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+34        android:protectionLevel="signature" />
+34-->[androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+35
+36    <uses-permission android:name="com.netspeed.monitor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+36-->[androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+36-->[androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+37
+38    <application
+38-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:26:5-69:19
+39        android:allowBackup="true"
+39-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:27:9-35
+40        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+40-->[androidx.core:core:1.15.0] /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
+41        android:dataExtractionRules="@xml/data_extraction_rules"
+41-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:28:9-65
+42        android:debuggable="true"
+43        android:extractNativeLibs="false"
+44        android:fullBackupContent="@xml/backup_rules"
+44-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:29:9-54
+45        android:icon="@mipmap/ic_launcher"
+45-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:30:9-43
+46        android:label="@string/app_name"
+46-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:31:9-41
+47        android:roundIcon="@mipmap/ic_launcher_round"
+47-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:32:9-54
+48        android:supportsRtl="true"
+48-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:33:9-35
+49        android:theme="@style/Theme.NetworkSpeedMonitor" >
+49-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:34:9-57
+50
+51        <!-- Main Activity -->
+52        <activity
+52-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:38:9-47:20
+53            android:name="com.netspeed.monitor.MainActivity"
+53-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:39:13-41
+54            android:exported="true"
+54-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:40:13-36
+55            android:launchMode="singleTop"
+55-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:41:13-43
+56            android:theme="@style/Theme.NetworkSpeedMonitor" >
+56-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:42:13-61
+57            <intent-filter>
+57-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:43:13-46:29
+58                <action android:name="android.intent.action.MAIN" />
+58-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:44:17-69
+58-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:44:25-66
+59
+60                <category android:name="android.intent.category.LAUNCHER" />
+60-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:45:17-77
+60-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:45:27-74
+61            </intent-filter>
+62        </activity>
+63
+64        <!-- Continuous Speed Monitoring Foreground Service -->
+65        <service
+65-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:50:9-54:56
+66            android:name="com.netspeed.monitor.service.SpeedMonitorService"
+66-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:51:13-56
+67            android:enabled="true"
+67-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:52:13-35
+68            android:exported="false"
+68-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:53:13-37
+69            android:foregroundServiceType="dataSync" />
+69-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:54:13-53
+70
+71        <!-- Device Boot Broadcast Receiver -->
+72        <receiver
+72-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:57:9-67:20
+73            android:name="com.netspeed.monitor.receiver.BootReceiver"
+73-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:58:13-50
+74            android:enabled="true"
+74-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:59:13-35
+75            android:exported="true" >
+75-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:60:13-36
+76            <intent-filter>
+76-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:61:13-66:29
+77                <action android:name="android.intent.action.BOOT_COMPLETED" />
+77-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:62:17-79
+77-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:62:25-76
+78                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+78-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:63:17-84
+78-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:63:25-81
+79                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+79-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:64:17-82
+79-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:64:25-79
+80
+81                <category android:name="android.intent.category.DEFAULT" />
+81-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:65:17-76
+81-->/Users/aalok/Developer/HUB/net speed /app/src/main/AndroidManifest.xml:65:27-73
+82            </intent-filter>
+83        </receiver>
+84
+85        <activity
+85-->[androidx.compose.ui:ui-tooling-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4508ac9e306604560c02819b187aa06d/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+86            android:name="androidx.compose.ui.tooling.PreviewActivity"
+86-->[androidx.compose.ui:ui-tooling-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4508ac9e306604560c02819b187aa06d/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+87            android:exported="true" />
+87-->[androidx.compose.ui:ui-tooling-android:1.7.6] /Users/aalok/.gradle/caches/8.14/transforms/4508ac9e306604560c02819b187aa06d/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+88
+89        <provider
+89-->[androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+90            android:name="androidx.startup.InitializationProvider"
+90-->[androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+91            android:authorities="com.netspeed.monitor.androidx-startup"
+91-->[androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+92            android:exported="false" >
+92-->[androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+93            <meta-data
+93-->[androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+94                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+94-->[androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+95                android:value="androidx.startup" />
+95-->[androidx.emoji2:emoji2:1.3.0] /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+96            <meta-data
+96-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+97                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+97-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+98                android:value="androidx.startup" />
+98-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+99            <meta-data
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+100                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+101                android:value="androidx.startup" />
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+102        </provider>
+103
+104        <receiver
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+105            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+106            android:directBootAware="false"
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+107            android:enabled="true"
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+108            android:exported="true"
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+109            android:permission="android.permission.DUMP" >
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+110            <intent-filter>
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+111                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+112            </intent-filter>
+113            <intent-filter>
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+114                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+115            </intent-filter>
+116            <intent-filter>
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+117                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+118            </intent-filter>
+119            <intent-filter>
+119-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+120                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+121            </intent-filter>
+122        </receiver>
+123    </application>
+124
+125</manifest>

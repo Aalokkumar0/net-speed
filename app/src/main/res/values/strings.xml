@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Network Speed Monitor</string>
+    <string name="notification_channel_name">Network Speed Monitor</string>
+    <string name="notification_channel_desc">Shows real-time internet upload and download speeds in the status bar.</string>
+    <string name="notification_title_monitoring">Network Speed</string>
+    <string name="notification_action_stop">Stop</string>
+    <string name="notification_action_settings">Settings</string>
+
+    <string name="overlay_download_default">↓ 0.0 B/s</string>
+    <string name="overlay_upload_default">↑ 0.0 B/s</string>
+    
+    <string name="service_status_running">Monitoring Active</string>
+    <string name="service_status_stopped">Monitoring Stopped</string>
+    
+    <string name="mode_notification">Notification Only</string>
+    <string name="mode_overlay">Floating Bubble Only</string>
+    <string name="mode_both">Both (Notification + Bubble)</string>
+    
+    <string name="unit_bytes">Bytes/sec (B/s, KB/s, MB/s)</string>
+    <string name="unit_bits">Bits/sec (bps, Kbps, Mbps)</string>
+</resources>

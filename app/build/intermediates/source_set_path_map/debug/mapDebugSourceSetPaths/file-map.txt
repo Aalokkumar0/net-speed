@@ -1,0 +1,49 @@
+com.netspeed.monitor.app-lifecycle-runtime-compose-release-0 /Users/aalok/.gradle/caches/8.14/transforms/0d8bb1821e2c99b38c3061e5ef064bd5/transformed/lifecycle-runtime-compose-release/res
+com.netspeed.monitor.app-savedstate-1.2.1-1 /Users/aalok/.gradle/caches/8.14/transforms/159957632ec8536278e18b5c3f34ca98/transformed/savedstate-1.2.1/res
+com.netspeed.monitor.app-material-icons-extended-release-2 /Users/aalok/.gradle/caches/8.14/transforms/198b655bfe74b079fedfd7c45ad5815d/transformed/material-icons-extended-release/res
+com.netspeed.monitor.app-runtime-release-3 /Users/aalok/.gradle/caches/8.14/transforms/203c50b00eb2e000dbb7f79ba03119f5/transformed/runtime-release/res
+com.netspeed.monitor.app-lifecycle-viewmodel-savedstate-2.8.7-4 /Users/aalok/.gradle/caches/8.14/transforms/210727be95c333a29edc3d495c0375ba/transformed/lifecycle-viewmodel-savedstate-2.8.7/res
+com.netspeed.monitor.app-customview-poolingcontainer-1.0.0-5 /Users/aalok/.gradle/caches/8.14/transforms/2bf02c3e9bdbf3a799d5dba12eb3176e/transformed/customview-poolingcontainer-1.0.0/res
+com.netspeed.monitor.app-animation-release-6 /Users/aalok/.gradle/caches/8.14/transforms/3305b9fbf5bb706bfe802fd5a896d933/transformed/animation-release/res
+com.netspeed.monitor.app-lifecycle-runtime-ktx-release-7 /Users/aalok/.gradle/caches/8.14/transforms/34cacdfe0c97a75e75444599364f7b1d/transformed/lifecycle-runtime-ktx-release/res
+com.netspeed.monitor.app-ui-tooling-release-8 /Users/aalok/.gradle/caches/8.14/transforms/4508ac9e306604560c02819b187aa06d/transformed/ui-tooling-release/res
+com.netspeed.monitor.app-core-runtime-2.2.0-9 /Users/aalok/.gradle/caches/8.14/transforms/48eaa9b57cf4998c32260415721f7116/transformed/core-runtime-2.2.0/res
+com.netspeed.monitor.app-ui-release-10 /Users/aalok/.gradle/caches/8.14/transforms/4e92338f1b91baad2e3787560db3006f/transformed/ui-release/res
+com.netspeed.monitor.app-lifecycle-runtime-release-11 /Users/aalok/.gradle/caches/8.14/transforms/4f5ff346a7d114b2a9c88a93aee3b0f5/transformed/lifecycle-runtime-release/res
+com.netspeed.monitor.app-animation-core-release-12 /Users/aalok/.gradle/caches/8.14/transforms/4f6661155de2a7673a344f9d8beca4e2/transformed/animation-core-release/res
+com.netspeed.monitor.app-ui-unit-release-13 /Users/aalok/.gradle/caches/8.14/transforms/5573f4cca5a659262580d2d9d1ff4271/transformed/ui-unit-release/res
+com.netspeed.monitor.app-lifecycle-livedata-core-2.8.7-14 /Users/aalok/.gradle/caches/8.14/transforms/563c9737733a722e0def0ea0c59a104c/transformed/lifecycle-livedata-core-2.8.7/res
+com.netspeed.monitor.app-ui-tooling-data-release-15 /Users/aalok/.gradle/caches/8.14/transforms/5fa6ddfc53fc4bd0334ad28c8e268d23/transformed/ui-tooling-data-release/res
+com.netspeed.monitor.app-activity-1.9.3-16 /Users/aalok/.gradle/caches/8.14/transforms/6803095689cd46b9d12b35da475ef1f3/transformed/activity-1.9.3/res
+com.netspeed.monitor.app-ui-tooling-preview-release-17 /Users/aalok/.gradle/caches/8.14/transforms/740b2fe8c13443598721c0cea468c9af/transformed/ui-tooling-preview-release/res
+com.netspeed.monitor.app-foundation-release-18 /Users/aalok/.gradle/caches/8.14/transforms/7c3379a3eeb4bb9a4febae97bffa5a0b/transformed/foundation-release/res
+com.netspeed.monitor.app-savedstate-ktx-1.2.1-19 /Users/aalok/.gradle/caches/8.14/transforms/8016d39a5c3b38d467e611b1ef706ed4/transformed/savedstate-ktx-1.2.1/res
+com.netspeed.monitor.app-annotation-experimental-1.4.1-20 /Users/aalok/.gradle/caches/8.14/transforms/80f15059d56a4561d6e5e929cd5fd5a7/transformed/annotation-experimental-1.4.1/res
+com.netspeed.monitor.app-material-release-21 /Users/aalok/.gradle/caches/8.14/transforms/8b3acf671031a72b0e72e1516bdc5434/transformed/material-release/res
+com.netspeed.monitor.app-material3-release-22 /Users/aalok/.gradle/caches/8.14/transforms/8eaacf95d4e06e59baef9aa884cd021f/transformed/material3-release/res
+com.netspeed.monitor.app-ui-text-release-23 /Users/aalok/.gradle/caches/8.14/transforms/98d01fb309078be02405183297f49c67/transformed/ui-text-release/res
+com.netspeed.monitor.app-lifecycle-viewmodel-release-24 /Users/aalok/.gradle/caches/8.14/transforms/a1021dd2619f40017ef9add45a5c2b86/transformed/lifecycle-viewmodel-release/res
+com.netspeed.monitor.app-activity-ktx-1.9.3-25 /Users/aalok/.gradle/caches/8.14/transforms/a65ce52c54bd24a01e03aa820be53f8f/transformed/activity-ktx-1.9.3/res
+com.netspeed.monitor.app-material-ripple-release-26 /Users/aalok/.gradle/caches/8.14/transforms/a85b702cb67d26997b58d50683ffa811/transformed/material-ripple-release/res
+com.netspeed.monitor.app-runtime-saveable-release-27 /Users/aalok/.gradle/caches/8.14/transforms/ad1ab87c97199353b80db7bc0920a648/transformed/runtime-saveable-release/res
+com.netspeed.monitor.app-lifecycle-process-2.8.7-28 /Users/aalok/.gradle/caches/8.14/transforms/b296298bd4ac8436c09e5294012c37b7/transformed/lifecycle-process-2.8.7/res
+com.netspeed.monitor.app-ui-util-release-29 /Users/aalok/.gradle/caches/8.14/transforms/c46e0572db8ad004dcaf72399f69f75f/transformed/ui-util-release/res
+com.netspeed.monitor.app-lifecycle-viewmodel-ktx-2.8.7-30 /Users/aalok/.gradle/caches/8.14/transforms/c688399f5ceebe2577340c0e1afb8771/transformed/lifecycle-viewmodel-ktx-2.8.7/res
+com.netspeed.monitor.app-material-icons-core-release-31 /Users/aalok/.gradle/caches/8.14/transforms/c6f2d335cf9dc466d7269529ea29885f/transformed/material-icons-core-release/res
+com.netspeed.monitor.app-profileinstaller-1.3.1-32 /Users/aalok/.gradle/caches/8.14/transforms/caa66d806ad3b54a6652c9f44659b277/transformed/profileinstaller-1.3.1/res
+com.netspeed.monitor.app-startup-runtime-1.1.1-33 /Users/aalok/.gradle/caches/8.14/transforms/cf446a27617863bc3ebdac345963911e/transformed/startup-runtime-1.1.1/res
+com.netspeed.monitor.app-graphics-path-1.0.1-34 /Users/aalok/.gradle/caches/8.14/transforms/cff8fc1ea6ea14b1130dc43c8a132c22/transformed/graphics-path-1.0.1/res
+com.netspeed.monitor.app-foundation-layout-release-35 /Users/aalok/.gradle/caches/8.14/transforms/dcbebc82afb0c9e415c9a13925cf67db/transformed/foundation-layout-release/res
+com.netspeed.monitor.app-ui-geometry-release-36 /Users/aalok/.gradle/caches/8.14/transforms/de027ce49424520d29f06053e4c5cecc/transformed/ui-geometry-release/res
+com.netspeed.monitor.app-core-ktx-1.15.0-37 /Users/aalok/.gradle/caches/8.14/transforms/df5a9d44cae6fbb31195756c1ec1a35e/transformed/core-ktx-1.15.0/res
+com.netspeed.monitor.app-core-1.15.0-38 /Users/aalok/.gradle/caches/8.14/transforms/e1622b96be1191caac60a55f4633e9fc/transformed/core-1.15.0/res
+com.netspeed.monitor.app-tracing-1.2.0-39 /Users/aalok/.gradle/caches/8.14/transforms/ea6b69602e860a23ca0917d82309b972/transformed/tracing-1.2.0/res
+com.netspeed.monitor.app-emoji2-1.3.0-40 /Users/aalok/.gradle/caches/8.14/transforms/ed3eeee709be5a0bd28708bebc519bc3/transformed/emoji2-1.3.0/res
+com.netspeed.monitor.app-ui-graphics-release-41 /Users/aalok/.gradle/caches/8.14/transforms/f7ba68ffeac57d738335dda181403379/transformed/ui-graphics-release/res
+com.netspeed.monitor.app-activity-compose-1.9.3-42 /Users/aalok/.gradle/caches/8.14/transforms/fbdedcbbe8d7efb0a41bcc26116e51bf/transformed/activity-compose-1.9.3/res
+com.netspeed.monitor.app-resValues-43 /Users/aalok/Developer/HUB/net speed /app/build/generated/res/resValues/debug
+com.netspeed.monitor.app-packageDebugResources-44 /Users/aalok/Developer/HUB/net speed /app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.netspeed.monitor.app-packageDebugResources-45 /Users/aalok/Developer/HUB/net speed /app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.netspeed.monitor.app-debug-46 /Users/aalok/Developer/HUB/net speed /app/build/intermediates/merged_res/debug/mergeDebugResources
+com.netspeed.monitor.app-debug-47 /Users/aalok/Developer/HUB/net speed /app/src/debug/res
+com.netspeed.monitor.app-main-48 /Users/aalok/Developer/HUB/net speed /app/src/main/res

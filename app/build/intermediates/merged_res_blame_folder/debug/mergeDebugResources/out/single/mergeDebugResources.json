@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/drawable_bg_floating_overlay.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/drawable/bg_floating_overlay.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/drawable_ic_upload.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/drawable/ic_upload.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/xml_backup_rules.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/xml_data_extraction_rules.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/drawable_ic_download.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/drawable/ic_download.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/drawable_ic_speed_notification.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/drawable/ic_speed_notification.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-debug-47:/layout_layout_floating_overlay.xml.flat",
+        "source": "com.netspeed.monitor.app-main-49:/layout/layout_floating_overlay.xml"
+    }
+]

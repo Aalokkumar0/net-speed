@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/drawable_bg_floating_overlay.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/drawable/bg_floating_overlay.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/drawable_ic_speed_notification.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/drawable/ic_speed_notification.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/layout_layout_floating_overlay.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/layout/layout_floating_overlay.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/xml_backup_rules.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/drawable_ic_download.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/drawable/ic_download.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/xml_data_extraction_rules.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.netspeed.monitor.app-release-44:/drawable_ic_upload.xml.flat",
+        "source": "com.netspeed.monitor.app-main-45:/drawable/ic_upload.xml"
+    }
+]
