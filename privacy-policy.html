@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Network Speed Monitor</title>
+    <style>
+        :root {
+            --bg-color: #0d131f;
+            --card-bg: #162032;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #00e5ff;
+            --border-color: #1e293b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        h1 {
+            color: var(--accent-cyan);
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 14px;
+        }
+        h2 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 10px;
+        }
+        p, li {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            margin-bottom: 12px;
+        }
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #1a273e;
+            color: var(--accent-cyan);
+        }
+        td {
+            color: var(--text-secondary);
+        }
+        .highlight-box {
+            background-color: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 10px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+        .highlight-box strong {
+            color: var(--accent-cyan);
+        }
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <div class="meta">
+            <strong>Application:</strong> Network Speed Monitor (<code>com.netspeed.monitor</code>)<br>
+            <strong>Last Updated:</strong> August 11, 2026
+        </div>
+
+        <div class="highlight-box">
+            <strong>Core Privacy Guarantee:</strong> Network Speed Monitor is an entirely offline, privacy-first utility. We do <strong>NOT</strong> collect, store, transmit, or share any personal data, browsing activity, or network content.
+        </div>
+
+        <h2>1. Information Collection & Usage</h2>
+        <p><strong>Network Speed Calculation:</strong> The app measures live upload and download throughput using Android’s standard public API (<code>android.net.TrafficStats</code>). These counters measure the total number of bytes transferred at the Linux kernel socket level across your Wi-Fi and Cellular connections.</p>
+        <p><strong>On-Device Only:</strong> All calculations, moving average smoothing, and session counters are computed locally in your device's memory. The app never inspects the content of your internet traffic, URLs, or files, and never sends data to any server.</p>
+
+        <h2>2. Permissions Used and Why</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Permission</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST_NOTIFICATIONS</code></td>
+                    <td>Displays live download and upload speeds in the phone's status bar and notification shade.</td>
+                </tr>
+                <tr>
+                    <td><code>FOREGROUND_SERVICE</code> & <code>FOREGROUND_SERVICE_DATA_SYNC</code></td>
+                    <td>Maintains continuous, reliable background throughput calculation on modern Android versions (Android 14 & 15).</td>
+                </tr>
+                <tr>
+                    <td><code>ACCESS_NETWORK_STATE</code></td>
+                    <td>Detects whether the device is connected to Wi-Fi or Mobile Data.</td>
+                </tr>
+                <tr>
+                    <td><code>RECEIVE_BOOT_COMPLETED</code></td>
+                    <td>Restores the speed monitor on device boot (only if enabled by the user).</td>
+                </tr>
+                <tr>
+                    <td><code>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</code></td>
+                    <td>Allows the user to exempt the monitor from Samsung One UI / Android background sleep limits.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Third-Party Services & Tracking</h2>
+        <ul>
+            <li><strong>No Advertisements:</strong> We do not integrate ad networks.</li>
+            <li><strong>No Analytics SDKs:</strong> We do not use third-party analytics (e.g., Firebase, Google Analytics, Facebook SDK).</li>
+            <li><strong>Zero Tracking:</strong> The app does not track your location, device ID, or user behavior.</li>
+        </ul>
+
+        <h2>4. Data Retention</h2>
+        <p>Your user preferences (such as unit choice and display preferences) are stored locally in Android's private <code>SharedPreferences</code>. Uninstalling the app completely wipes all data from your device.</p>
+
+        <h2>5. Children’s Privacy</h2>
+        <p>The application does not collect any personally identifiable information and is safe for users of all ages.</p>
+
+        <h2>6. Contact</h2>
+        <p>If you have any questions regarding this Privacy Policy, please contact:</p>
+        <p><strong>Email:</strong> <a href="mailto:aalokkumar0@gmail.com">aalokkumar0@gmail.com</a></p>
+    </div>
+</body>
+</html>
