@@ -1,10 +1,9 @@
 package com.netspeed.monitor
 
-import com.netspeed.monitor.data.DisplayMode
+import com.netspeed.monitor.data.NetworkSpeed
 import com.netspeed.monitor.data.SpeedUnit
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 
 class DataModelTest {
@@ -18,22 +17,27 @@ class DataModelTest {
     }
 
     @Test
-    fun `DisplayMode active flags evaluate correctly`() {
-        assertTrue(DisplayMode.NOTIFICATION_ONLY.isNotificationActive)
-        assertFalse(DisplayMode.NOTIFICATION_ONLY.isOverlayActive)
-
-        assertFalse(DisplayMode.OVERLAY_ONLY.isNotificationActive)
-        assertTrue(DisplayMode.OVERLAY_ONLY.isOverlayActive)
-
-        assertTrue(DisplayMode.BOTH.isNotificationActive)
-        assertTrue(DisplayMode.BOTH.isOverlayActive)
+    fun `NetworkSpeed ZERO constant has zero values`() {
+        assertEquals(0L, NetworkSpeed.ZERO.rxBytesPerSec)
+        assertEquals(0L, NetworkSpeed.ZERO.txBytesPerSec)
+        assertEquals(0L, NetworkSpeed.ZERO.totalRxBytes)
+        assertEquals(0L, NetworkSpeed.ZERO.totalTxBytes)
+        assertNotNull(NetworkSpeed.ZERO.timestamp)
     }
 
     @Test
-    fun `DisplayMode fromName fallback logic`() {
-        assertEquals(DisplayMode.NOTIFICATION_ONLY, DisplayMode.fromName("NOTIFICATION_ONLY"))
-        assertEquals(DisplayMode.OVERLAY_ONLY, DisplayMode.fromName("OVERLAY_ONLY"))
-        assertEquals(DisplayMode.BOTH, DisplayMode.fromName("BOTH"))
-        assertEquals(DisplayMode.NOTIFICATION_ONLY, DisplayMode.fromName("INVALID_MODE"))
+    fun `NetworkSpeed custom instantiation`() {
+        val speed = NetworkSpeed(
+            rxBytesPerSec = 1024L,
+            txBytesPerSec = 512L,
+            totalRxBytes = 2048L,
+            totalTxBytes = 1024L,
+            timestamp = 123456789L
+        )
+        assertEquals(1024L, speed.rxBytesPerSec)
+        assertEquals(512L, speed.txBytesPerSec)
+        assertEquals(2048L, speed.totalRxBytes)
+        assertEquals(1024L, speed.totalTxBytes)
+        assertEquals(123456789L, speed.timestamp)
     }
 }

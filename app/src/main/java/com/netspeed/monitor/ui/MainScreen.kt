@@ -31,15 +31,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.netspeed.monitor.data.DisplayMode
 import com.netspeed.monitor.data.NetworkSpeed
 import com.netspeed.monitor.data.SpeedUnit
-import com.netspeed.monitor.engine.SpeedTestManager
 import com.netspeed.monitor.ui.components.BatteryOptimizationCard
 import com.netspeed.monitor.ui.components.LiveSpeedCard
-import com.netspeed.monitor.ui.components.ModeSelectorCard
 import com.netspeed.monitor.ui.components.PermissionBanner
-import com.netspeed.monitor.ui.components.SpeedTestCard
 import com.netspeed.monitor.ui.components.UnitSelectorCard
 import com.netspeed.monitor.ui.theme.CyanAccent
 import com.netspeed.monitor.ui.theme.DarkBg
@@ -52,20 +48,14 @@ import com.netspeed.monitor.ui.theme.TextPrimary
 fun MainScreen(
     isServiceRunning: Boolean,
     currentSpeed: NetworkSpeed,
-    displayMode: DisplayMode,
     speedUnit: SpeedUnit,
     startOnBoot: Boolean,
     hasNotificationPermission: Boolean,
-    hasOverlayPermission: Boolean,
     isIgnoringBatteryOptimizations: Boolean,
-    speedTestResult: SpeedTestManager.TestResult,
     onToggleService: (Boolean) -> Unit,
-    onModeSelected: (DisplayMode) -> Unit,
     onUnitSelected: (SpeedUnit) -> Unit,
     onStartOnBootChanged: (Boolean) -> Unit,
-    onStartSpeedTest: () -> Unit,
     onRequestNotificationPermission: () -> Unit,
-    onRequestOverlayPermission: () -> Unit,
     onRequestDisableBatteryOptimization: () -> Unit
 ) {
     Scaffold(
@@ -140,14 +130,7 @@ fun MainScreen(
                 unit = speedUnit
             )
 
-            // Bandwidth Verification Speed Test Card
-            SpeedTestCard(
-                testResult = speedTestResult,
-                unit = speedUnit,
-                onStartTest = onStartSpeedTest
-            )
-
-            // Permission Alerts if necessary
+            // Permission Banner for Status Bar Notifications if missing
             if (!hasNotificationPermission) {
                 PermissionBanner(
                     title = "Notification Permission Required",
@@ -155,20 +138,6 @@ fun MainScreen(
                     onRequestPermission = onRequestNotificationPermission
                 )
             }
-
-            if (displayMode.isOverlayActive && !hasOverlayPermission) {
-                PermissionBanner(
-                    title = "Overlay Permission Required",
-                    description = "Grant 'Draw over other apps' to show the floating speed bubble.",
-                    onRequestPermission = onRequestOverlayPermission
-                )
-            }
-
-            // Mode Selector
-            ModeSelectorCard(
-                currentMode = displayMode,
-                onModeSelected = onModeSelected
-            )
 
             // Unit and Boot Preferences
             UnitSelectorCard(

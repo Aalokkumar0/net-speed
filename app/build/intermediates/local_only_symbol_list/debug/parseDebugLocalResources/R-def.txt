@@ -12,17 +12,11 @@ color surface_variant
 color text_primary
 color text_secondary
 color upload_color
-drawable bg_floating_overlay
 drawable ic_download
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_speed_notification
 drawable ic_upload
-id btn_overlay_close
-id overlay_root
-id tv_download_speed
-id tv_upload_speed
-layout layout_floating_overlay
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name

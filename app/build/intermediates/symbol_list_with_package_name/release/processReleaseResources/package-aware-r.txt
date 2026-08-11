@@ -59,7 +59,6 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
-drawable bg_floating_overlay
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -125,7 +124,6 @@ id actions
 id androidx_compose_ui_view_composition_context
 id async
 id blocking
-id btn_overlay_close
 id chronometer
 id compose_view_saveable_id_tag
 id consume_window_insets_tag
@@ -147,7 +145,6 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
-id overlay_root
 id pooling_container_listener_holder_tag
 id report_drawn
 id right_icon
@@ -169,8 +166,6 @@ id text
 id text2
 id time
 id title
-id tv_download_speed
-id tv_upload_speed
 id view_tree_lifecycle_owner
 id view_tree_on_back_pressed_dispatcher_owner
 id view_tree_saved_state_registry_owner
@@ -181,7 +176,6 @@ integer status_bar_notification_info_maxnum
 layout custom_dialog
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
-layout layout_floating_overlay
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big

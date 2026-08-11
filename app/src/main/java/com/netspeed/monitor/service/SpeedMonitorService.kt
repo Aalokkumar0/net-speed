@@ -11,7 +11,6 @@ import com.netspeed.monitor.data.NetworkSpeed
 import com.netspeed.monitor.data.PreferenceManager
 import com.netspeed.monitor.engine.TrafficTracker
 import com.netspeed.monitor.notification.NotificationHelper
-import com.netspeed.monitor.overlay.FloatingOverlayManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -26,8 +25,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Continuous Foreground Service that periodically samples network throughput using TrafficStats,
- * updates the persistent status bar notification, manages the optional floating overlay bubble,
- * and publishes real-time metrics to active UI collectors.
+ * updates the persistent status bar notification icon, and publishes real-time metrics to the UI.
  */
 class SpeedMonitorService : Service() {
 
@@ -36,7 +34,6 @@ class SpeedMonitorService : Service() {
 
     private lateinit var trafficTracker: TrafficTracker
     private lateinit var notificationHelper: NotificationHelper
-    private lateinit var overlayManager: FloatingOverlayManager
     private lateinit var preferenceManager: PreferenceManager
 
     private var pollingJob: Job? = null
@@ -45,7 +42,6 @@ class SpeedMonitorService : Service() {
         super.onCreate()
         trafficTracker = TrafficTracker()
         notificationHelper = NotificationHelper(this)
-        overlayManager = FloatingOverlayManager(this)
         preferenceManager = PreferenceManager.getInstance(this)
 
         _isServiceRunning.value = true
@@ -91,27 +87,8 @@ class SpeedMonitorService : Service() {
                 val speed = trafficTracker.sample()
                 _currentSpeed.value = speed
 
-                val displayMode = preferenceManager.getDisplayMode()
                 val speedUnit = preferenceManager.getSpeedUnit()
-
-                // Update notification if enabled in display mode
-                if (displayMode.isNotificationActive) {
-                    notificationHelper.update(speed, speedUnit)
-                }
-
-                // Update floating overlay if enabled in display mode
-                if (displayMode.isOverlayActive) {
-                    if (!overlayManager.isShowing && overlayManager.hasPermission()) {
-                        overlayManager.show()
-                    }
-                    if (overlayManager.isShowing) {
-                        overlayManager.updateSpeed(speed, speedUnit)
-                    }
-                } else {
-                    if (overlayManager.isShowing) {
-                        overlayManager.hide()
-                    }
-                }
+                notificationHelper.update(speed, speedUnit)
 
                 delay(SAMPLE_INTERVAL_MS)
             }
@@ -121,7 +98,6 @@ class SpeedMonitorService : Service() {
     private fun stopMonitoring() {
         pollingJob?.cancel()
         pollingJob = null
-        overlayManager.hide()
         _isServiceRunning.value = false
         preferenceManager.setMonitoringEnabled(false)
     }

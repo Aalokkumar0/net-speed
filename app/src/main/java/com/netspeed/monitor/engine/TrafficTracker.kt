@@ -2,7 +2,6 @@ package com.netspeed.monitor.engine
 
 import android.net.TrafficStats
 import android.os.SystemClock
-import android.util.Log
 import com.netspeed.monitor.data.NetworkSpeed
 
 /**
@@ -52,7 +51,6 @@ class TrafficTracker {
             lastRxBytes = currentRx
             lastTxBytes = currentTx
             lastSampleTimeMs = currentTimeMs
-            Log.d(TAG, "[INIT] First tick baseline established: rx=$currentRx, tx=$currentTx")
             return NetworkSpeed(
                 rxBytesPerSec = 0L,
                 txBytesPerSec = 0L,
@@ -105,11 +103,6 @@ class TrafficTracker {
             currentTx - sessionStartTxBytes
         } else 0L
 
-        Log.d(
-            TAG,
-            "[TICK] rxDelta=$rxDelta B, txDelta=$txDelta B | elapsed=${elapsedSeconds}s | rxSpeed=$rxSpeedBytesPerSec B/s, txSpeed=$txSpeedBytesPerSec B/s"
-        )
-
         return NetworkSpeed(
             rxBytesPerSec = rxSpeedBytesPerSec,
             txBytesPerSec = txSpeedBytesPerSec,
@@ -117,9 +110,5 @@ class TrafficTracker {
             totalTxBytes = sessionTotalTx,
             timestamp = System.currentTimeMillis()
         )
-    }
-
-    companion object {
-        private const val TAG = "TrafficTracker"
     }
 }

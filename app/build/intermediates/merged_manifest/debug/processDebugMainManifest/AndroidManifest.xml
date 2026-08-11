@@ -17,9 +17,6 @@
     <!-- Android 14+ (API 34+) specific foreground service type permission -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
-    <!-- Floating overlay permission -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <!-- Boot persistence permission -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.netspeed.monitor.DataModelTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-11T01:50:44.488Z" hostname="Unknown_8e:78:8f:87:49:8b" time="0.003">
+<testsuite name="com.netspeed.monitor.DataModelTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-11T01:54:53.850Z" hostname="Unknown_8e:78:8f:87:49:8b" time="0.003">
   <properties/>
-  <testcase name="DisplayMode fromName fallback logic" classname="com.netspeed.monitor.DataModelTest" time="0.003"/>
-  <testcase name="SpeedUnit fromName handles valid and invalid values" classname="com.netspeed.monitor.DataModelTest" time="0.0"/>
-  <testcase name="DisplayMode active flags evaluate correctly" classname="com.netspeed.monitor.DataModelTest" time="0.0"/>
+  <testcase name="NetworkSpeed ZERO constant has zero values" classname="com.netspeed.monitor.DataModelTest" time="0.001"/>
+  <testcase name="SpeedUnit fromName handles valid and invalid values" classname="com.netspeed.monitor.DataModelTest" time="0.002"/>
+  <testcase name="NetworkSpeed custom instantiation" classname="com.netspeed.monitor.DataModelTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
