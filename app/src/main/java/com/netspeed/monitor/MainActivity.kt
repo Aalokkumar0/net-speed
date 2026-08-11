@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
-import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -138,9 +137,24 @@ class MainActivity : ComponentActivity() {
                     },
                     onRequestDisableBatteryOptimization = {
                         requestDisableBatteryOptimization()
+                    },
+                    onOpenPrivacyPolicy = {
+                        openPrivacyPolicy()
                     }
                 )
             }
+        }
+    }
+
+    private fun openPrivacyPolicy() {
+        val policyUrl = "https://github.com/Aalokkumar0/net-speed/blob/main/PRIVACY_POLICY.md"
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(policyUrl)).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Could not open browser for Privacy Policy", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -1,6 +1,8 @@
 package com.netspeed.monitor.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +19,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
+import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +32,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,6 +44,7 @@ import com.netspeed.monitor.ui.components.PermissionBanner
 import com.netspeed.monitor.ui.components.UnitSelectorCard
 import com.netspeed.monitor.ui.theme.CyanAccent
 import com.netspeed.monitor.ui.theme.DarkBg
+import com.netspeed.monitor.ui.theme.DarkCardBorder
 import com.netspeed.monitor.ui.theme.DarkSurface
 import com.netspeed.monitor.ui.theme.SwitchTrackInactive
 import com.netspeed.monitor.ui.theme.TextMuted
@@ -62,7 +68,8 @@ fun MainScreen(
     onNotificationVisibleChanged: (Boolean) -> Unit,
     onStartOnBootChanged: (Boolean) -> Unit,
     onRequestNotificationPermission: () -> Unit,
-    onRequestDisableBatteryOptimization: () -> Unit
+    onRequestDisableBatteryOptimization: () -> Unit,
+    onOpenPrivacyPolicy: () -> Unit
 ) {
     Scaffold(
         containerColor = DarkBg
@@ -164,6 +171,58 @@ fun MainScreen(
                 isIgnoringBatteryOptimizations = isIgnoringBatteryOptimizations,
                 onRequestDisableOptimization = onRequestDisableBatteryOptimization
             )
+
+            // Privacy Policy & Trust Footer Link
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(DarkSurface)
+                    .border(1.dp, DarkCardBorder, RoundedCornerShape(16.dp))
+                    .clickable(onClick = onOpenPrivacyPolicy)
+                    .padding(horizontal = 16.dp, vertical = 14.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .size(36.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color(0x1A00E5FF)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Security,
+                            contentDescription = null,
+                            tint = CyanAccent,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    Column {
+                        Text(
+                            text = "Privacy Policy",
+                            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.SemiBold),
+                            color = TextPrimary
+                        )
+                        Text(
+                            text = "100% On-Device & Zero Data Collection",
+                            style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+                            color = TextMuted
+                        )
+                    }
+                }
+
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.OpenInNew,
+                    contentDescription = "Open Privacy Policy",
+                    tint = TextMuted,
+                    modifier = Modifier.size(18.dp)
+                )
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
         }
