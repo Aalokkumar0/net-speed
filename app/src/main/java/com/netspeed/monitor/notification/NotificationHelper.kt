@@ -35,9 +35,14 @@ class NotificationHelper(private val context: Context) {
     private val iconBitmap: Bitmap = Bitmap.createBitmap(ICON_SIZE, ICON_SIZE, Bitmap.Config.ARGB_8888)
     private val iconCanvas: Canvas = Canvas(iconBitmap)
     private val textBounds: Rect = Rect()
-    private val iconPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val iconPaint: Paint = Paint().apply {
+        // Anti-aliasing OFF: every pixel is fully opaque or fully transparent.
+        // Android renders notification small icons as white-alpha silhouettes since Lollipop.
+        // Soft/blurry anti-aliased edges cause digits to smear at ~24dp display size,
+        // making "0" look like "O". Crisp pixel edges solve this.
+        isAntiAlias = false
         color = Color.WHITE
-        typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+        typeface = Typeface.DEFAULT_BOLD
         textAlign = Paint.Align.CENTER
     }
 
@@ -68,20 +73,23 @@ class NotificationHelper(private val context: Context) {
     /**
      * Creates a dynamically-rendered status bar icon bitmap with the current speed number.
      * Reuses pre-allocated Canvas and Paint instances for optimal performance.
-     * Calibrated font sizing ensures strings with space like "0 K", "25 M", "250 M" fit
-     * comfortably without any clipping within the 96x96 canvas bounds.
+     *
+     * Renders NUMBER ONLY (no unit letter) at maximum size for 1–3 characters.
+     * Anti-aliasing is disabled for crisp pixel-perfect edges at ~24dp display size.
      */
     @Synchronized
     fun createSpeedIcon(speedText: String): IconCompat {
         // Clear previous frame to full transparency
         iconBitmap.eraseColor(Color.TRANSPARENT)
 
-        // Select text size to fit within 96x96 status bar canvas with padding
-        val textSize = when {
-            speedText.length <= 3 -> 48f
-            speedText.length == 4 -> 40f
-            speedText.length == 5 -> 32f
-            else -> 26f
+        // Font sizing optimized for number-only strings (max 3 chars).
+        // Removing unit letters (K/M/G) allows significantly larger digits
+        // than the old 4-6 char strings, improving legibility at ~24dp.
+        val textSize = when (speedText.length) {
+            1 -> 72f    // "0" — single digit, maximum possible size
+            2 -> 58f    // "25" — two digits, very large
+            3 -> 46f    // "850", "1.2" — three chars including decimal, still large
+            else -> 38f // safety fallback (should not occur with 3-char cap)
         }
         iconPaint.textSize = textSize
 

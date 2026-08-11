@@ -52,19 +52,36 @@ class SpeedFormatterTest {
     }
 
     @Test
-    fun `formatCompactSpeed formats compact status bar icons with spaces correctly`() {
-        // Bytes per sec
-        assertEquals("0 K", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("500 K", SpeedFormatter.formatCompactSpeed(500_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("1.2 M", SpeedFormatter.formatCompactSpeed(1_240_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("25 M", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("250 M", SpeedFormatter.formatCompactSpeed(250_000_000L, SpeedUnit.BYTES_PER_SEC))
-        assertEquals("1.5 G", SpeedFormatter.formatCompactSpeed(1_500_000_000L, SpeedUnit.BYTES_PER_SEC))
+    fun `formatCompactSpeed formats number-only status bar icon text correctly`() {
+        // Bytes per sec — number only, no unit suffix, max 3 chars
+        assertEquals("0", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("500", SpeedFormatter.formatCompactSpeed(500_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("1.2", SpeedFormatter.formatCompactSpeed(1_240_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("25", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("250", SpeedFormatter.formatCompactSpeed(250_000_000L, SpeedUnit.BYTES_PER_SEC))
+        assertEquals("999", SpeedFormatter.formatCompactSpeed(1_500_000_000L, SpeedUnit.BYTES_PER_SEC))
 
-        // Bits per sec
-        assertEquals("0 K", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BITS_PER_SEC))
-        assertEquals("400 K", SpeedFormatter.formatCompactSpeed(50_000L, SpeedUnit.BITS_PER_SEC)) // 50KB = 400Kb
-        assertEquals("9.6 M", SpeedFormatter.formatCompactSpeed(1_200_000L, SpeedUnit.BITS_PER_SEC)) // 1.2MB = 9.6Mb
-        assertEquals("200 M", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BITS_PER_SEC)) // 25MB = 200Mb
+        // Bits per sec — same number-only format
+        assertEquals("0", SpeedFormatter.formatCompactSpeed(0L, SpeedUnit.BITS_PER_SEC))
+        assertEquals("400", SpeedFormatter.formatCompactSpeed(50_000L, SpeedUnit.BITS_PER_SEC)) // 50KB = 400Kb
+        assertEquals("9.6", SpeedFormatter.formatCompactSpeed(1_200_000L, SpeedUnit.BITS_PER_SEC)) // 1.2MB = 9.6Mb
+        assertEquals("200", SpeedFormatter.formatCompactSpeed(25_000_000L, SpeedUnit.BITS_PER_SEC)) // 25MB = 200Mb
+    }
+
+    @Test
+    fun `formatCompactSpeed never exceeds 3 characters`() {
+        // Boundary: 9_950_000 should produce "10" (2 chars), not "10.0" (4 chars)
+        assertEquals("10", SpeedFormatter.formatCompactSpeed(9_950_000L, SpeedUnit.BYTES_PER_SEC))
+        // Just below boundary: should produce "9.9" (3 chars)
+        assertEquals("9.9", SpeedFormatter.formatCompactSpeed(9_940_000L, SpeedUnit.BYTES_PER_SEC))
+        // GB+ speeds cap at "999"
+        assertEquals("999", SpeedFormatter.formatCompactSpeed(2_000_000_000L, SpeedUnit.BYTES_PER_SEC))
+        // Verify all outputs are <= 3 chars
+        val testValues = listOf(0L, 500L, 5_000L, 50_000L, 500_000L, 1_240_000L, 9_940_000L,
+            9_950_000L, 25_000_000L, 250_000_000L, 999_000_000L, 1_500_000_000L)
+        for (v in testValues) {
+            val result = SpeedFormatter.formatCompactSpeed(v, SpeedUnit.BYTES_PER_SEC)
+            assertTrue("formatCompactSpeed($v) = \"$result\" exceeds 3 chars", result.length <= 3)
+        }
     }
 }

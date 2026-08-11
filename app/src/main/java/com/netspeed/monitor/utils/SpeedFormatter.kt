@@ -85,32 +85,38 @@ object SpeedFormatter {
     }
 
     /**
-     * Formats compact single-string speed for status bar icon bitmaps with space between number and unit.
-     * Examples: "0 K", "850 K", "1.2 M", "25 M", "250 M", "1.1 G"
+     * Formats a number-only speed string for status bar icon bitmaps.
+     * Returns ONLY the numeric value with NO unit suffix (K/M/G), max 3 characters.
+     * Unit context is shown in the expanded notification body text instead.
+     *
+     * Examples: "0", "500", "1.2", "25", "250", "999"
+     *
+     * The value represents KB/s or Kbps depending on [unit], transitioning to
+     * MB/s or Mbps scale at >= 1M, capped at "999" for GB+ speeds.
      */
     fun formatCompactSpeed(bytesPerSec: Long, unit: SpeedUnit): String {
         val safeBytes = if (bytesPerSec < 0) 0L else bytesPerSec
 
-        return when (unit) {
-            SpeedUnit.BYTES_PER_SEC -> {
-                when {
-                    safeBytes < 1000L -> "0 K"
-                    safeBytes < 1_000_000L -> "${safeBytes / 1000L} K"
-                    safeBytes < 10_000_000L -> String.format(Locale.US, "%.1f M", safeBytes / 1_000_000.0)
-                    safeBytes < 1_000_000_000L -> "${safeBytes / 1_000_000L} M"
-                    else -> String.format(Locale.US, "%.1f G", safeBytes / 1_000_000_000.0)
-                }
+        val value: Double = when (unit) {
+            SpeedUnit.BYTES_PER_SEC -> safeBytes.toDouble()
+            SpeedUnit.BITS_PER_SEC -> (safeBytes * 8).toDouble()
+        }
+
+        return when {
+            // Below 1 K → show "0"
+            value < 1_000.0 -> "0"
+            // 1 K .. 999 K → whole number KB/Kbps: "1" to "999"
+            value < 1_000_000.0 -> "${(value / 1_000.0).toLong()}"
+            // 1.0 M .. 9.9 M → one decimal: "1.0" to "9.9" (3 chars)
+            // Threshold 9_950_000 ensures %.1f never rounds up to "10.0"
+            value < 9_950_000.0 -> String.format(Locale.US, "%.1f", value / 1_000_000.0)
+            // 10 M .. 999 M → whole number: "10" to "999" (2-3 chars)
+            value < 1_000_000_000.0 -> {
+                val rounded = kotlin.math.round(value / 1_000_000.0).toLong()
+                "${rounded.coerceAtMost(999)}"
             }
-            SpeedUnit.BITS_PER_SEC -> {
-                val bitsPerSec = safeBytes * 8L
-                when {
-                    bitsPerSec < 1000L -> "0 K"
-                    bitsPerSec < 1_000_000L -> "${bitsPerSec / 1000L} K"
-                    bitsPerSec < 10_000_000L -> String.format(Locale.US, "%.1f M", bitsPerSec / 1_000_000.0)
-                    bitsPerSec < 1_000_000_000L -> "${bitsPerSec / 1_000_000L} M"
-                    else -> String.format(Locale.US, "%.1f G", bitsPerSec / 1_000_000_000.0)
-                }
-            }
+            // 1 G+ → cap at "999"
+            else -> "999"
         }
     }
 
