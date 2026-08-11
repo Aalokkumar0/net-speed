@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.netspeed.monitor.SpeedFormatterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-08-11T01:54:53.642Z" hostname="Unknown_8e:78:8f:87:49:8b" time="0.007">
+<testsuite name="com.netspeed.monitor.SpeedFormatterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-08-11T02:03:50.385Z" hostname="Unknown_8e:78:8f:87:49:8b" time="0.006">
   <properties/>
   <testcase name="formatCompactSpeed formats compact status bar icons correctly" classname="com.netspeed.monitor.SpeedFormatterTest" time="0.003"/>
   <testcase name="formatBitSpeed formats bits correctly" classname="com.netspeed.monitor.SpeedFormatterTest" time="0.0"/>
   <testcase name="formatDataUsage formats cumulative usage" classname="com.netspeed.monitor.SpeedFormatterTest" time="0.0"/>
-  <testcase name="formatByteSpeed formats bytes correctly" classname="com.netspeed.monitor.SpeedFormatterTest" time="0.001"/>
+  <testcase name="formatByteSpeed formats bytes correctly" classname="com.netspeed.monitor.SpeedFormatterTest" time="0.0"/>
   <testcase name="formatCombined outputs both directions with directional arrows" classname="com.netspeed.monitor.SpeedFormatterTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

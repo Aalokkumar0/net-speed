@@ -103,8 +103,10 @@ class NotificationHelper(private val context: Context) {
 
         val totalDataStr = "Session: " + SpeedFormatter.formatDataUsage(speed.totalRxBytes + speed.totalTxBytes)
 
-        // Compact speed text for the status bar icon (e.g. "0K", "850K", "1.2M", "25M")
-        val compactSpeed = SpeedFormatter.formatCompactSpeed(speed.rxBytesPerSec, unit)
+        // Use active throughput (max of rx/tx) so uploads also update the status bar number
+        val activeSpeedBytes = maxOf(speed.rxBytesPerSec, speed.txBytesPerSec)
+        val compactSpeed = SpeedFormatter.formatCompactSpeed(activeSpeedBytes, unit)
+
         val speedIcon = createSpeedIcon(compactSpeed)
 
         // PendingIntent to launch MainActivity on notification click
